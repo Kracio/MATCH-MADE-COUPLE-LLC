@@ -75,8 +75,7 @@ export const siteContent = {
     },
     heading: "We’re Diego and Tamara, the team behind Match Made Adventures!",
     paragraphs: [
-      "We’ve spent the past few years exploring Hawaii’s islands while helping adventure tours, luxury hotels, and local restaurants grow through digital marketing and social media. Along the way, we discovered how little guidance exists for picking the best experiences—so we’ve tried over 1,000 adventures and are sharing what we’ve learned!",
-      "Whether you’re planning your next trip or a business looking to connect with travelers, we’re here to show the highlights, the hidden gems, and everything in between.",
+      "We’ve explored Hawai‘i’s islands, tried over 1,000 adventures, and partnered with local brands to uncover the best experiences for travelers, couples, and adventure seekers.",
     ],
   },
   islands: {
