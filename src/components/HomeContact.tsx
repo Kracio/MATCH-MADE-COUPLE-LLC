@@ -36,12 +36,12 @@ export function HomeContact({ content }: HomeContactProps) {
                 </label>
                 <textarea id="contact-message" name="message" required rows={6} className="resize-y rounded-2xl border border-lava/15 bg-sand/40 px-4 py-4 text-base text-lava outline-none focus:border-hibiscus" />
               </div>
-              <button type="submit" className="group inline-flex w-fit items-center gap-3 rounded-full bg-lava px-6 py-3 text-sm font-bold uppercase tracking-[0.16em] text-shell shadow-[0_18px_55px_rgb(74_44_36_/_0.12)] hover:bg-palm active:scale-[0.98]">
+              <button type="submit" className="group inline-flex w-fit items-center gap-3 rounded-full bg-hibiscus px-5 py-2.5 text-sm font-bold uppercase tracking-[0.16em] text-shell shadow-[0_18px_55px_rgb(74_44_36_/_0.12)] hover:bg-[#8F3F32] focus-visible:outline-hibiscus active:scale-[0.98]">
                 <span>{content.fields.submit}</span>
-                <span aria-hidden="true" className="grid size-8 place-items-center rounded-full bg-white/15 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1">
+                <span aria-hidden="true" className="grid size-8 place-items-center rounded-full bg-white/15 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5">
                   <svg viewBox="0 0 18 18" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.7">
-                    <path d="M3 9h11" strokeLinecap="round" />
-                    <path d="m10 5 4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M5 13 13 5" strokeLinecap="round" />
+                    <path d="M6.5 5H13v6.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
               </button>

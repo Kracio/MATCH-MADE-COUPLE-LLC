@@ -16,6 +16,9 @@ export type ImageAsset = {
 export type IslandCard = {
   name: string;
   subtitle: string;
+  title?: string;
+  description?: string;
+  coordinates?: string;
   href?: string;
   status?: string;
   image: ImageAsset;
@@ -23,6 +26,7 @@ export type IslandCard = {
 
 export type ResourceCard = {
   label: string;
+  description?: string;
   href: string;
   image: ImageAsset;
 };
@@ -89,37 +93,49 @@ export const siteContent = {
     cards: [
       {
         name: "Kaua’i",
-        subtitle: "The Garden Island",
+        subtitle: "The Garden Isle",
+        title: "Primal Resonance",
+        description: "In the emerald folds of the Na Pali Coast, time stands still. Kaua'i is the oldest child of the volcanic chain, a masterwork of erosion and growth where ancient waterfalls carve secrets into cathedral-like spires.",
+        coordinates: "NA PALI COAST · 22.1° N, 159.6° W",
         href: `${homeUrl}/kauai-hawaii/`,
         image: {
-          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/KAUAI-COVER-INSTA-1.png?resize=2380%2C2380&ssl=1",
+          src: "/img/kauai.webp",
           alt: "Kaua’i Hawaii island guide cover",
         },
       },
       {
         name: "Maui",
-        subtitle: "The Valley Island",
+        subtitle: "The Valley Isle",
+        title: "Golden Epiphany",
+        description: "Maui exists in the balance between the celestial and the terrestrial. From the lunar landscape of Haleakalā to the winding Road to Hana, it is an island of dramatic contrasts and sun-drenched spirit.",
+        coordinates: "TROPICAL RAINFOREST · 20.7° N, 156.0° W",
         href: `${homeUrl}/maui-hawaii/`,
         image: {
-          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/MAUI-COVER-INSTA-1.png?resize=2380%2C2380&ssl=1",
+          src: "/img/maui.webp",
           alt: "Maui Hawaii island guide cover",
         },
       },
       {
         name: "Big Island",
-        subtitle: "The Land of Lava",
+        subtitle: "The Orchid Isle",
+        title: "Forged in Fire",
+        description: "Here, the earth is still being born. The Big Island is a landscape of raw creation, where Pele’s molten breath meets the cool Pacific, building new land in a spectacular display of geological power.",
+        coordinates: "KĪLAUEA · 19.4° N, 155.2° W",
         href: `${homeUrl}/the-big-island-hawaii/`,
         image: {
-          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/BIG-ISLAND-COVER-INSTA.png?resize=2380%2C2380&ssl=1",
+          src: "/img/big-island.webp",
           alt: "Big Island Hawaii guide cover",
         },
       },
       {
         name: "O’ahu",
         subtitle: "The Gathering Place",
+        title: "Modern Ancestry",
+        description: "Where the skyline of Honolulu meets the legendary swells of the North Shore. O'ahu is the heartbeat of Hawaii, a vibrant intersection of cosmopolitan energy and deep-rooted cultural legacy.",
+        coordinates: "WAIKIKI · 21.2° N, 157.8° W",
         status: "Coming soon!",
         image: {
-          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/OAHU-COVER-INSTA.png?resize=2380%2C2380&ssl=1",
+          src: "/img/oahu.webp",
           alt: "O’ahu Hawaii guide cover",
         },
       },
@@ -128,28 +144,32 @@ export const siteContent = {
   resources: {
     id: "resources",
     heading: "Don’t go to Hawaii without these first:",
+    body: "A curated collection of notes for the mindful traveler. Discover the nuances that make your journey authentic and respectful.",
     items: [
       {
-        label: "Do and Don’ts in Hawaii",
+        label: "Do and Don'ts in Hawaii",
+        description: "Navigating the islands with grace. A gentle guide to respecting the aina and the kama'aina.",
         href: `${homeUrl}/do-and-donts-in-hawaii/`,
         image: {
-          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/Do-and-Donts-MMC-300x300.png?resize=300%2C300&ssl=1",
+          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/Do-and-Donts-MMC-300x300.png",
           alt: "Do and Don’ts in Hawaii resource cover",
         },
       },
       {
         label: "Your Hawaii Essentials",
+        description: "Packing light, packing right. Curated items for the sophisticated explorer seeking both comfort and style.",
         href: `${homeUrl}/what-to-bring-to-hawaii/`,
         image: {
-          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/Your-Hawaii-Essentials-MMC-300x300.png?resize=300%2C300&ssl=1",
+          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/Your-Hawaii-Essentials-MMC-300x300.png",
           alt: "Your Hawaii Essentials resource cover",
         },
       },
       {
         label: "Hawaiian Unspoken Rules",
+        description: "Reading between the lines. Understanding the subtle cultural cues that connect you deeply to the spirit of Aloha.",
         href: `${homeUrl}/hawaiian-unspoken-rules/`,
         image: {
-          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/Hawaiian-Unspoken-Rules-MMC-300x300.png?resize=300%2C300&ssl=1",
+          src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/09/Hawaiian-Unspoken-Rules-MMC-300x300.png",
           alt: "Hawaiian Unspoken Rules resource cover",
         },
       },
@@ -157,9 +177,28 @@ export const siteContent = {
   },
   workWithUs: {
     id: "work-with-us",
-    heading: "WORK WITH US!",
-    body: "We specialize in creating authentic, high-performing visuals that help brands grow. Our content connects with new audiences, builds trust, and drives measurable results — transforming visibility and engagement into sustainable growth through strategic, experiential marketing.",
-    href: `${homeUrl}/marketing-and-media-production/`,
+    eyebrow: "CONTENT THAT CONNECTS. EXPERIENCES THAT LAST.",
+    heading: "WORK WITH US",
+    headingAccent: "!",
+    body: "We help brands grow through authentic storytelling, scroll-stopping visuals, and curated experiences that showcase the beauty and spirit of Hawai'i. From high-performing campaigns to unforgettable island experiences, we create content that builds trust, inspires connection, and drives measurable results.",
+    image: {
+      src: "https://lh3.googleusercontent.com/aida-public/AB6AXuAVMtrMS9oAgdkfqsq5z56IHN9qav_enF882sfN4NiK1hFhE3JNiTjp4Bv81xPW0Lzj95FgKpp7-kBlAeMHWeXWclWDHqwe_RD00oBFptRNqcFdx7MMIJYBEgW_jNJemSZmkG7DNVwCgNcuXChjfZZUFxcGnWNtKdUcsj1TKycTV70dIK38jP6e2yxDNiyu7rM-4wr5ZOZFeSi_ElWTxnVKCWGpvMlSyVGmsAyNkrxPTMtPeRQrXR6jllTZX9NF2jfxE1BUEZP3lyI",
+      alt: "Photographer holding a vintage camera on a Hawaiian beach at sunset",
+      caption: "Visual Storytelling",
+    },
+    secondaryImage: {
+      src: "https://i0.wp.com/matchmadecouple.com/wp-content/uploads/2025/11/NAPALI.jpg?resize=997%2C1024&ssl=1",
+      alt: "Na Pali coast landscape",
+      caption: "Lanai, Hawaii",
+    },
+    primaryButton: {
+      label: "Start a Conversation",
+      href: "#contact-section",
+    },
+    secondaryButton: {
+      label: "View Media Kit",
+      href: `${homeUrl}/marketing-and-media-production/`,
+    },
     servicesHeading: "Videography and Photography Services",
     services: [
       {

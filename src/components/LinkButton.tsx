@@ -7,7 +7,7 @@ type LinkButtonProps = {
 export function LinkButton({ href, children, variant = "primary" }: LinkButtonProps) {
   const classes =
     variant === "primary"
-      ? "bg-[#B85A47] text-[#FFF8EF] hover:bg-[#8F3F32] focus-visible:outline-[#B85A47]"
+      ? "bg-hibiscus text-shell hover:bg-[#8F3F32] focus-visible:outline-hibiscus"
       : "bg-[#FFF7EC] text-[#7A3E32] ring-1 ring-[#D7A58F] hover:bg-[#F7E5D8]";
 
   return (

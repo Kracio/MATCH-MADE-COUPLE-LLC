@@ -1,112 +1,181 @@
+"use client";
+
 import type { siteContent } from "@/content/site-content";
-import { SectionShell } from "./SectionShell";
+import { useRef, useState } from "react";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 
 type IslandGuideProps = {
   content: typeof siteContent.islands;
 };
 
 export function IslandGuide({ content }: IslandGuideProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+  const rightContainerRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!sectionRef.current || !rightContainerRef.current) return;
+
+    const cardsCount = content.cards.length;
+    
+    // Create a pinning scroll trigger timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top top",
+        end: `+=${cardsCount * 60}%`, // Reduced scroll distance for faster scrolling
+        pin: true,
+        scrub: 0.1, // Almost instant scrubbing catch-up
+        snap: {
+          snapTo: 1 / (cardsCount - 1),
+          duration: 0.3, // Faster snap animation
+          delay: 0, // No delay before snapping
+          ease: "power2.inOut"
+        },
+        onUpdate: (self) => {
+          // Update active index based on progress
+          const progress = self.progress;
+          const index = Math.round(progress * (cardsCount - 1));
+          
+          setActiveIndex((prev) => (prev !== index ? index : prev));
+          
+          // Update visual progress bar (moving top down)
+          if (progressRef.current) {
+            gsap.set(progressRef.current, { top: `${progress * 75}%` });
+          }
+        }
+      }
+    });
+
+    // Move the right panel up as we scroll
+    tl.to(rightContainerRef.current, {
+      y: `-${(cardsCount - 1) * 100}svh`,
+      ease: "none"
+    });
+
+    return () => {
+      tl.kill();
+    };
+  }, { scope: sectionRef, dependencies: [content.cards.length] });
+
+  const scrollToIsland = (index: number) => {
+    const st = ScrollTrigger.getAll().find(t => t.trigger === sectionRef.current);
+    if (st) {
+      // Calculate scroll position in the document
+      const scrollPos = st.start + (st.end - st.start) * (index / (content.cards.length - 1));
+      
+      // Native smooth scroll to the calculated position
+      window.scrollTo({
+        top: scrollPos,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <SectionShell
-      id={content.id}
-      eyebrow="Island guide"
-      title={content.heading}
-      className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#FFF8EE_0%,#F4E8D5_48%,#E7F4DC_100%)]"
-    >
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_18%_10%,rgb(96_239_255_/_0.28),transparent_31%),radial-gradient(circle_at_86%_18%,rgb(150_250_215_/_0.28),transparent_30%),radial-gradient(circle_at_42%_92%,rgb(184_92_74_/_0.13),transparent_34%)]" aria-hidden="true" />
-      <div
-        className="absolute inset-0 -z-10 opacity-[0.07] [background-image:linear-gradient(90deg,rgb(79_124_120_/_0.32)_1px,transparent_1px),linear-gradient(0deg,rgb(47_79_62_/_0.2)_1px,transparent_1px)] [background-size:46px_46px]"
-        aria-hidden="true"
-      />
-
-      <div className="grid gap-8 lg:grid-cols-[0.74fr_1.26fr] lg:items-start lg:gap-10 xl:gap-14">
-        <div data-reveal className="rounded-[2.25rem] bg-lava/[0.055] p-2 ring-1 ring-lava/10 shadow-[0_28px_90px_rgb(79_124_120_/_0.12)] lg:sticky lg:top-28">
-          <div className="relative overflow-hidden rounded-[1.8rem] bg-shell/[0.92] p-7 shadow-[inset_0_1px_0_rgb(255_255_255_/_0.72)] sm:p-8 lg:p-9">
-            <div className="absolute -right-16 -top-16 size-48 rounded-full bg-[radial-gradient(circle,rgb(96_239_255_/_0.26),transparent_68%)]" aria-hidden="true" />
-            <div className="absolute -bottom-20 -left-20 size-56 rounded-full bg-[radial-gradient(circle,rgb(150_250_215_/_0.24),transparent_70%)]" aria-hidden="true" />
-            <svg aria-hidden="true" viewBox="0 0 360 220" className="absolute inset-x-0 bottom-0 h-44 w-full text-tide/[0.18]" fill="none">
-              <path d="M-8 172C43 130 82 122 128 141C176 162 209 153 253 119C294 88 329 82 368 101" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="7 15" />
-              <path d="M247 44c18-23 43-29 72-20M255 59c24-13 50-14 78-2M269 77c20-4 39-1 58 8" stroke="currentColor" strokeWidth="1.05" strokeLinecap="round" />
-            </svg>
-
-            <div className="relative">
-              <div className="mb-7 flex items-center justify-between gap-5">
-                <div className="rounded-[1.35rem] bg-[linear-gradient(135deg,rgb(96_239_255_/_0.28),rgb(150_250_215_/_0.22)_54%,rgb(255_248_238_/_0.9))] p-3 ring-1 ring-tide/15">
-                  <img src={content.icon.src} alt={content.icon.alt} className="size-14" />
-                </div>
-                <p className="max-w-28 text-right text-[0.64rem] font-bold uppercase leading-5 tracking-[0.22em] text-tide/80">
-                  Choose your route
-                </p>
-              </div>
-              <p className="text-xl leading-9 text-lava/[0.78] lg:text-[1.32rem] lg:leading-10">{content.body}</p>
-              <div className="mt-8 grid grid-cols-3 gap-2 text-center" aria-hidden="true">
-                {["137", "8", "4"].map((stat, index) => (
-                  <div key={stat} className="rounded-2xl bg-sand/[0.55] px-3 py-4 ring-1 ring-lava/[0.08]">
-                    <p className="font-display text-3xl font-semibold tracking-tight text-palm">{stat}</p>
-                    <p className="mt-1 text-[0.58rem] font-bold uppercase tracking-[0.18em] text-lava/[0.48]">
-                      {index === 0 ? "islands" : index === 1 ? "visitor" : "major"}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2 lg:gap-6">
+    <section id={content.id} ref={sectionRef} className="relative flex w-full h-[100svh] overflow-hidden bg-[#FBFAF6] border-y border-palm/10">
+      
+      {/* Left Side: Navigation */}
+      <aside className="hidden md:flex flex-col justify-start pt-[20vh] w-[30%] xl:w-1/3 h-full border-r border-palm/15 px-8 lg:px-16 xl:px-20 relative z-20 bg-[#FBFAF6]">
+        <div className="flex flex-col gap-10 lg:gap-14">
           {content.cards.map((island, index) => {
-            const isComingSoon = Boolean(island.status);
-            const card = (
-              <article className="group h-full rounded-[2.15rem] bg-shell/[0.55] p-2 ring-1 ring-lava/10 shadow-[0_26px_80px_rgb(74_44_36_/_0.10)] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1.5">
-                <div className="relative min-h-[27rem] overflow-hidden rounded-[1.7rem] bg-palm shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18)] sm:min-h-[29rem] lg:min-h-[31rem]">
-                  <img
-                    src={island.image.src}
-                    alt={island.image.alt}
-                    className="absolute inset-0 size-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.045]"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(47_79_62_/_0.04)_0%,rgb(47_79_62_/_0.38)_42%,rgb(74_44_36_/_0.88)_100%)]" aria-hidden="true" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_26%_16%,rgb(96_239_255_/_0.22),transparent_34%),radial-gradient(circle_at_82%_4%,rgb(150_250_215_/_0.17),transparent_28%)] mix-blend-screen" aria-hidden="true" />
-                  <div className="absolute inset-x-5 top-5 flex items-center justify-between gap-3">
-                    <p className="rounded-full bg-shell/[0.88] px-3.5 py-2 text-[0.62rem] font-bold uppercase tracking-[0.22em] text-palm shadow-[0_14px_40px_rgb(47_79_62_/_0.12)] ring-1 ring-shell/70">
-                      {String(index + 1).padStart(2, "0")}
-                    </p>
-                    <p className="rounded-full bg-lava/50 px-3.5 py-2 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-shell ring-1 ring-shell/[0.22]">
-                      {isComingSoon ? island.status : "Island guide"}
-                    </p>
-                  </div>
-                  <svg aria-hidden="true" viewBox="0 0 420 220" className="absolute inset-x-0 bottom-16 h-40 w-full text-shell/20" fill="none">
-                    <path d="M-16 148C46 118 89 118 143 139C205 164 253 153 304 112C351 75 386 71 434 91" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" strokeDasharray="6 14" />
-                    <path d="M50 182c34-15 66-15 96 0M176 187c44-18 83-18 118 0M316 181c30-12 56-12 82 0" stroke="currentColor" strokeWidth="1.05" strokeLinecap="round" />
-                  </svg>
+            const isActive = activeIndex === index;
+            return (
+              <button
+                key={island.name}
+                onClick={() => scrollToIsland(index)}
+                className={`group relative cursor-pointer transition-all duration-500 text-left flex items-center ${
+                  isActive ? "text-palm opacity-100 translate-x-5" : "text-palm/40 opacity-60 hover:opacity-100"
+                }`}
+              >
+                <span className="font-sans text-[10px] font-bold uppercase tracking-widest absolute -left-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h2 className="font-display text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tight">
+                  {island.name}
+                </h2>
+              </button>
+            );
+          })}
+        </div>
+        
+        {/* Quote at bottom left */}
+        <div className="absolute bottom-12 lg:bottom-16 left-8 lg:left-16 xl:left-20 pr-8">
+          <p className="font-display italic text-sm lg:text-base xl:text-lg text-lava/70 max-w-[16rem]">
+            "The islands are more than places on a map. They are a state of being, a breath of life, the mana of the Pacific."
+          </p>
+        </div>
+      </aside>
 
-                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
-                    <div className="mb-5 h-px w-full bg-gradient-to-r from-shell/70 via-shell/22 to-transparent" aria-hidden="true" />
-                    <h3 className="font-display text-[clamp(3.15rem,8vw,4.8rem)] font-semibold leading-[0.82] tracking-[-0.055em] text-shell drop-shadow-[0_8px_26px_rgb(74_44_36_/_0.35)] md:text-[clamp(3.3rem,4.8vw,5.3rem)]">
-                      {island.name}
-                    </h3>
-                    <div className="mt-5 flex flex-wrap items-end justify-between gap-4">
-                      <p className="text-lg italic leading-7 text-shell/[0.86]">{island.subtitle}</p>
-                      <span className="inline-flex size-10 items-center justify-center rounded-full bg-shell/90 text-lg text-hibiscus shadow-[0_14px_40px_rgb(74_44_36_/_0.2)] ring-1 ring-shell/75 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5" aria-hidden="true">
-                        {island.href ? "↗" : "•"}
-                      </span>
+      {/* Right Side: GSAP Scrolled Content */}
+      <div className="flex-1 h-[100svh] overflow-hidden relative">
+        <div ref={rightContainerRef} className="w-full h-full will-change-transform">
+          {content.cards.map((island, index) => {
+            const id = island.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const isEven = index % 2 !== 0;
+            return (
+              <div 
+                key={island.name}
+                id={id} 
+                className="island-section relative w-full h-[100svh] overflow-hidden"
+              >
+                {/* Background styling for each section */}
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,#FFF8EE_0%,#F4E8D5_48%,#E7F4DC_100%)]"></div>
+                <div className="absolute inset-0 z-0 opacity-[0.05] [background-image:linear-gradient(90deg,rgb(79_124_120_/_0.32)_1px,transparent_1px),linear-gradient(0deg,rgb(47_79_62_/_0.2)_1px,transparent_1px)] [background-size:46px_46px]" aria-hidden="true" />
+
+                <div className={`relative z-10 w-full h-full flex flex-col ${isEven ? 'xl:flex-row-reverse' : 'xl:flex-row'} items-center justify-center gap-10 xl:gap-12 p-6 md:p-12 lg:p-16`}>
+                  
+                  {/* Image Polaroid */}
+                  <div className={`flex-1 flex justify-center ${isEven ? 'xl:justify-start' : 'xl:justify-end'} w-full`}>
+                    <div className={`bg-[#FBFAF6] p-4 sm:p-5 pb-10 sm:pb-12 ring-1 ring-tide/20 shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] w-full max-w-[18rem] sm:max-w-sm md:max-w-md ${isEven ? 'rotate-2 hover:rotate-0' : '-rotate-2 hover:rotate-0'} hover:-translate-y-4 hover:shadow-[0_35px_60px_-15px_rgba(47,79,62,0.3)]`}>
+                      <div className="aspect-[4/5] overflow-hidden bg-palm/10 mb-6">
+                        <img alt={island.image.alt} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src={island.image.src}/>
+                      </div>
+                      <div className="px-2 text-center">
+                        <h4 className="font-display text-xl sm:text-2xl italic text-palm relative inline-block">
+                          {island.name}
+                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-palm/30 -skew-x-12"></span>
+                        </h4>
+                        <p className="font-sans text-[9px] sm:text-[10px] font-bold tracking-widest mt-4 text-lava/60 uppercase">{island.coordinates}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </article>
-            );
 
-            return island.href ? (
-              <a key={island.name} data-reveal href={island.href} className="block rounded-[2.15rem] focus-visible:outline-hibiscus" aria-label={`Open ${island.name} guide`}>
-                {card}
-              </a>
-            ) : (
-              <div key={island.name} data-reveal>
-                {card}
+                  {/* Text Content */}
+                  <div className={`flex-1 max-w-xl text-center ${isEven ? 'xl:text-right' : 'xl:text-left'} px-2 sm:px-0`}>
+                    <span className="font-sans text-[10px] sm:text-xs font-bold text-lava/60 mb-3 sm:mb-4 block tracking-[0.3em] uppercase">{island.subtitle}</span>
+                    <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl text-palm mb-4 sm:mb-6 font-medium leading-[1.1]">{island.title}</h3>
+                    <p className="text-base sm:text-lg text-lava/80 leading-relaxed mb-6 sm:mb-8">{island.description}</p>
+                    
+                    {island.href ? (
+                      <a href={island.href} className={`group inline-flex items-center gap-3 sm:gap-4 text-hibiscus font-sans text-[10px] sm:text-xs font-bold uppercase tracking-widest mx-auto xl:mx-0 ${isEven ? 'xl:ml-auto' : ''}`}>
+                        EXPLORE THE WILD <span className="transition-transform group-hover:translate-x-2">→</span>
+                      </a>
+                    ) : (
+                      <span className={`inline-flex items-center gap-3 sm:gap-4 text-lava/50 font-sans text-[10px] sm:text-xs font-bold uppercase tracking-widest mx-auto xl:mx-0 ${isEven ? 'xl:ml-auto' : ''}`}>
+                        {island.status}
+                      </span>
+                    )}
+                  </div>
+
+                </div>
               </div>
             );
           })}
         </div>
       </div>
-    </SectionShell>
+
+      {/* Scroll Progress Indicator */}
+      <div className="hidden md:flex absolute top-[50svh] right-0 h-0 z-40 items-center justify-end pointer-events-none w-0">
+        <div className="absolute right-6 xl:right-12 -translate-y-1/2 w-[2px] h-32 bg-palm/10 rounded-full overflow-hidden">
+          <div 
+            ref={progressRef}
+            className="absolute top-0 left-0 w-full h-1/4 bg-palm/60 rounded-full will-change-transform" 
+          />
+        </div>
+      </div>
+
+    </section>
   );
 }
