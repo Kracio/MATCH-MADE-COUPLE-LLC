@@ -1,29 +1,12 @@
 "use client";
 
 import type { siteContent } from "@/content/site-content";
-import { useRef } from "react";
-import { ScrollTrigger, prefersReducedMotion, useGSAP } from "@/lib/gsap";
 
 type ResourcesProps = {
   content: typeof siteContent.resources;
 };
 
 export function Resources({ content }: ResourcesProps) {
-  const sectionRef = useRef<HTMLElement>(null);
-  
-  useGSAP(() => {
-    if (!sectionRef.current) return;
-    if (prefersReducedMotion()) return;
-    
-    // Briefly pin the section so it perfectly frames the screen, hiding the green line below
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: "+=50%", // Pin for a short scroll distance to ensure it owns the viewport
-      pin: true,
-      pinSpacing: true,
-    });
-  }, { scope: sectionRef });
 
   const rotationClasses = ["-rotate-3", "rotate-2", "-rotate-2"];
   const originClasses = ["origin-bottom-right", "origin-center", "origin-bottom-left"];
@@ -31,7 +14,7 @@ export function Resources({ content }: ResourcesProps) {
   const zIndexClasses = ["z-0", "z-10", "z-0"];
 
   return (
-    <section ref={sectionRef} id={content.id} className="relative flex min-h-[100svh] w-full flex-col justify-center overflow-hidden px-4 pb-12 pt-4 sm:px-6 lg:px-8 lg:pb-24 lg:pt-8 bg-[#FBFAF6]">
+    <section id={content.id} className="relative flex min-h-[100svh] w-full flex-col justify-center overflow-hidden px-4 pb-12 pt-4 sm:px-6 lg:px-8 lg:pb-24 lg:pt-8 bg-[#FBFAF6]">
       <div className="mx-auto w-full max-w-7xl">
         <div data-reveal className="mb-4 lg:mb-6 max-w-3xl">
           <p className="mb-3 inline-flex rounded-full bg-tide/10 px-4 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.22em] text-tide">
