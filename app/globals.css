@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 8.5rem;
 }
 
 body {
@@ -46,6 +47,10 @@ textarea {
   outline-offset: 4px;
 }
 
+[id] {
+  scroll-margin-top: 8.5rem;
+}
+
 .paper-grain {
   pointer-events: none;
   position: fixed;
@@ -56,6 +61,17 @@ textarea {
   background-size: 9px 9px;
 }
 
+[data-hero-header],
+[data-hero-item],
+[data-hero-visual],
+[data-hero-decor],
+[data-reveal],
+[data-reveal-child],
+[data-island-reveal],
+[data-parallax] {
+  will-change: transform, opacity;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -64,5 +80,16 @@ textarea {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  [data-hero-header],
+  [data-hero-item],
+  [data-hero-visual],
+  [data-hero-decor],
+  [data-reveal],
+  [data-reveal-child],
+  [data-island-reveal],
+  [data-parallax] {
+    will-change: auto;
   }
 }

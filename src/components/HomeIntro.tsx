@@ -17,6 +17,8 @@ export function HomeIntro({ content }: HomeIntroProps) {
         aria-hidden="true"
       />
       <svg
+        data-hero-decor
+        data-parallax="18"
         aria-hidden="true"
         viewBox="0 0 1200 720"
         className="absolute inset-x-0 top-14 -z-10 hidden h-[42rem] w-full text-tide/18 lg:block"
@@ -35,27 +37,27 @@ export function HomeIntro({ content }: HomeIntroProps) {
       </svg>
 
       <div className="w-full mx-auto grid max-w-7xl gap-8 lg:grid-cols-[minmax(0,0.88fr)_minmax(34rem,1.12fr)] lg:items-center lg:gap-10 xl:gap-14">
-        <div data-reveal className="relative z-10 max-w-[40rem] lg:mt-6 xl:mt-0">
+        <div className="relative z-10 max-w-[40rem] lg:mt-6 xl:mt-0">
 
-          <p className="mb-4 inline-flex rounded-full bg-shell/84 px-4 py-2 text-[0.64rem] font-bold uppercase tracking-[0.24em] text-tide shadow-[0_16px_48px_rgb(47_79_62_/_0.08)] ring-1 ring-tide/18 backdrop-blur-sm">
+          <p data-hero-item className="mb-4 inline-flex rounded-full bg-shell/84 px-4 py-2 text-[0.64rem] font-bold uppercase tracking-[0.24em] text-tide shadow-[0_16px_48px_rgb(47_79_62_/_0.08)] ring-1 ring-tide/18 backdrop-blur-sm">
             {content.eyebrow}
           </p>
-          <h1 className="max-w-[41rem] font-display text-[clamp(2.75rem,8vw,4.5rem)] font-medium leading-[0.94] tracking-tight text-palm sm:text-[clamp(3.1rem,6.5vw,4.8rem)] lg:text-[clamp(3.2rem,4.5vw,4.8rem)]">
+          <h1 data-hero-item className="max-w-[41rem] font-display text-[clamp(2.75rem,8vw,4.5rem)] font-medium leading-[0.94] tracking-tight text-palm sm:text-[clamp(3.1rem,6.5vw,4.8rem)] lg:text-[clamp(3.2rem,4.5vw,4.8rem)]">
             {headingLead}
             <span className="italic text-hibiscus decoration-hibiscus/20 decoration-2 underline-offset-[0.14em] [text-wrap:balance]">{headingAccent}</span>
             {headingTail}
           </h1>
-          <div className="mt-6 max-w-[39rem] space-y-4 border-l border-palm/22 pl-5 text-[1.1rem] leading-8 text-palm/85 sm:pl-6 sm:text-[1.15rem] sm:leading-9">
+          <div data-hero-item className="mt-6 max-w-[39rem] space-y-4 border-l border-palm/22 pl-5 text-[1.1rem] leading-8 text-palm/85 sm:pl-6 sm:text-[1.15rem] sm:leading-9">
             {content.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <div className="mt-6 flex flex-wrap gap-3 sm:gap-4">
+          <div data-hero-item className="mt-6 flex flex-wrap gap-3 sm:gap-4">
             <LinkButton href="#islands">Explore the islands</LinkButton>
             <LinkButton href="#work-with-us" variant="secondary">Work with us</LinkButton>
           </div>
 
-          <div className="mt-10 flex items-center gap-3 lg:mt-12" aria-hidden="true">
+          <div data-hero-decor className="mt-10 flex items-center gap-3 lg:mt-12" aria-hidden="true">
             <svg viewBox="0 0 48 48" className="size-8 text-tide/75" fill="none">
               <path d="M24 24c-7-7-8-13-3-17 5-3 9 1 8 9 5-6 11-6 14-1 3 6-3 10-11 9 8 3 11 9 7 14-5 5-10 1-12-7-1 8-6 13-12 10-6-4-4-11 5-14-9 1-15-3-13-9 2-6 10-5 17 6Z" stroke="currentColor" strokeWidth="1.35" strokeLinejoin="round" />
               <circle cx="24" cy="24" r="3" fill="currentColor" />
@@ -64,7 +66,7 @@ export function HomeIntro({ content }: HomeIntroProps) {
           </div>
         </div>
 
-        <div data-reveal className="relative mx-auto mt-12 min-h-[26rem] w-full max-w-[40rem] overflow-visible sm:min-h-[30rem] lg:mr-0 lg:mt-0 lg:min-h-[34rem] lg:max-w-[42rem] xl:mt-0 xl:min-h-[36rem]">
+        <div data-hero-visual className="relative mx-auto mt-12 min-h-[26rem] w-full max-w-[40rem] overflow-visible sm:min-h-[30rem] lg:mr-0 lg:mt-0 lg:min-h-[34rem] lg:max-w-[42rem] xl:mt-0 xl:min-h-[36rem]">
           <div className="absolute inset-x-6 -bottom-10 top-32 -z-10 rounded-[3rem] bg-[linear-gradient(135deg,rgb(79_124_120_/_0.18),rgb(244_232_213_/_0.2)_48%,rgb(47_79_62_/_0.14))] blur-2xl" aria-hidden="true" />
           <div className="absolute inset-0 z-10 flex items-center justify-center -translate-y-5">
             <img src={content.image.src} alt={content.image.alt} className="relative w-full max-w-[100%] scale-105 object-contain object-center drop-shadow-[0_24px_45px_rgb(47_79_62_/_0.15)] lg:translate-x-6 lg:scale-110 xl:translate-x-8 xl:scale-[1.15]" />

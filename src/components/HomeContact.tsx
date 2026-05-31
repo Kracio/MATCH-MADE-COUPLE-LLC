@@ -9,12 +9,12 @@ export function HomeContact({ content }: HomeContactProps) {
   return (
     <SectionShell id={content.id} eyebrow="Contact" title={content.heading} className="bg-sand/60">
       <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
-        <div data-reveal className="rounded-[2rem] bg-lava/5 p-2 ring-1 ring-lava/10">
+        <div data-reveal="fade-right" className="rounded-[2rem] bg-lava/5 p-2 ring-1 ring-lava/10">
           <div className="h-full overflow-hidden rounded-[1.55rem] bg-shell">
             <img src={content.image.src} alt={content.image.alt} className="h-full min-h-[28rem] w-full object-cover" />
           </div>
         </div>
-        <div data-reveal className="rounded-[2rem] bg-lava/5 p-2 ring-1 ring-lava/10">
+        <div data-reveal="fade-left" className="rounded-[2rem] bg-lava/5 p-2 ring-1 ring-lava/10">
           <div className="h-full rounded-[1.55rem] bg-shell p-7 shadow-[0_22px_70px_rgb(74_44_36_/_0.10)] sm:p-9">
             <p className="max-w-2xl text-xl font-semibold leading-9 text-lava/78">{content.body}</p>
             <form className="mt-9 grid gap-5" aria-label="Collaboration contact form">

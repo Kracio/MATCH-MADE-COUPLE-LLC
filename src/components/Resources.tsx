@@ -2,7 +2,7 @@
 
 import type { siteContent } from "@/content/site-content";
 import { useRef } from "react";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { ScrollTrigger, prefersReducedMotion, useGSAP } from "@/lib/gsap";
 
 type ResourcesProps = {
   content: typeof siteContent.resources;
@@ -13,6 +13,7 @@ export function Resources({ content }: ResourcesProps) {
   
   useGSAP(() => {
     if (!sectionRef.current) return;
+    if (prefersReducedMotion()) return;
     
     // Briefly pin the section so it perfectly frames the screen, hiding the green line below
     ScrollTrigger.create({
@@ -43,16 +44,16 @@ export function Resources({ content }: ResourcesProps) {
 
         {/* Description below title */}
         {content.body && (
-          <p className="mb-4 lg:mb-6 max-w-3xl text-base sm:text-lg leading-relaxed text-lava/80">
+          <p data-reveal className="mb-4 lg:mb-6 max-w-3xl text-base sm:text-lg leading-relaxed text-lava/80">
             {content.body}
           </p>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-center justify-center relative">
+        <div data-reveal-stagger className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-center justify-center relative">
         {content.items.map((item, index) => (
           <article
             key={item.label}
-            data-reveal
+            data-reveal-child
             className={`group bg-[#FBFAF6] p-4 sm:p-5 pb-8 sm:pb-10 shadow-[0_8px_30px_rgba(74,44,36,0.08)] transition-all duration-500 ease-out hover:shadow-[0_20px_40px_rgba(74,44,36,0.15)] flex flex-col mx-auto w-full max-w-[19rem] lg:max-w-[22rem] ring-1 ring-tide/20 hover:z-20 hover:-translate-y-2 hover:rotate-0 ${rotationClasses[index % 3]} ${originClasses[index % 3]} ${mtClasses[index % 3]} ${zIndexClasses[index % 3]}`}
           >
             <div className="relative w-full aspect-square bg-palm/10 overflow-hidden mb-6">

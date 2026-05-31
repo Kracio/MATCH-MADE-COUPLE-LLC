@@ -36,11 +36,11 @@ const SocialIcon = ({ name }: { name: string }) => {
 
 export function Footer({ content }: FooterProps) {
   return (
-    <footer className="w-full bg-hibiscus text-shell border-t border-shell/10">
+    <footer data-reveal-stagger className="w-full bg-hibiscus text-shell border-t border-shell/10">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full px-6 py-16 md:px-12 lg:px-16 lg:py-24 max-w-[85rem] mx-auto gap-12">
         
         {/* Left Side: Brand Identity */}
-        <div className="flex flex-col gap-2 md:w-5/12 lg:w-1/3">
+        <div data-reveal-child className="flex flex-col gap-2 md:w-5/12 lg:w-1/3">
           <div className="w-16 h-16 rounded-full overflow-hidden mb-6 opacity-90 hover:opacity-100 transition-opacity">
             <img src={content.logo.src} alt={content.logo.alt} className="w-full h-full object-cover" />
           </div>
@@ -67,7 +67,7 @@ export function Footer({ content }: FooterProps) {
         </div>
 
         {/* Right Side: Navigation & Copyright */}
-        <div className="flex flex-col md:items-end gap-6 md:w-2/3 mt-8 md:mt-0 w-full">
+        <div data-reveal-child className="flex flex-col md:items-end gap-6 md:w-2/3 mt-8 md:mt-0 w-full">
           
           {/* Links Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-6 text-left w-full md:w-auto">

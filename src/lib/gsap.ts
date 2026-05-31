@@ -6,4 +6,7 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-export { gsap, ScrollTrigger, useGSAP };
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+export { gsap, ScrollTrigger, useGSAP, prefersReducedMotion };

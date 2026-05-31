@@ -30,13 +30,14 @@ export function HomeReviews({ content }: HomeReviewsProps) {
       <div className="absolute inset-0 z-0 opacity-[0.03] [background-image:linear-gradient(90deg,rgb(79_124_120)_1px,transparent_1px),linear-gradient(0deg,rgb(47_79_62)_1px,transparent_1px)] [background-size:46px_46px]" aria-hidden="true" />
 
       {/* Main Container */}
-      <div className="mx-auto w-full max-w-[85rem] px-0 pt-8 pb-0 lg:pt-16 lg:pb-0 relative z-10 flex flex-col items-center">
+      <div data-reveal-stagger className="mx-auto w-full max-w-[85rem] px-0 pt-8 pb-0 lg:pt-16 lg:pb-0 relative z-10 flex flex-col items-center">
 
         {/* Carousel Wrapper */}
         <div className="relative w-full flex items-center justify-center group">
 
           {/* Left Arrow */}
           <button
+            data-reveal-child
             onClick={scrollLeft}
             className="absolute left-2 lg:-left-6 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#FDFCF8]/90 text-lava shadow-[0_4px_20px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all hover:bg-white hover:scale-105 active:scale-95 border border-lava/10"
             aria-label="Previous reviews"
@@ -56,6 +57,7 @@ export function HomeReviews({ content }: HomeReviewsProps) {
               return (
                 <article
                   key={review.author}
+                  data-reveal-child
                   className={`flex-none snap-center flex flex-col justify-between rounded-xl sm:rounded-2xl p-6 lg:p-8 shadow-2xl transition-all duration-500 w-[80vw] sm:w-[22rem] lg:w-[26rem] h-[22rem] lg:h-[24rem] shrink-0 ${isCenter
                     ? "bg-[#FDFCF8] scale-100 z-20 opacity-100"
                     : "bg-[#FDFCF8]/80 scale-90 sm:scale-95 z-10 opacity-70 hover:opacity-100 cursor-pointer backdrop-blur-md"
@@ -86,6 +88,7 @@ export function HomeReviews({ content }: HomeReviewsProps) {
 
           {/* Right Arrow */}
           <button
+            data-reveal-child
             onClick={scrollRight}
             className="absolute right-2 lg:-right-6 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#FDFCF8]/90 text-lava shadow-[0_4px_20px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all hover:bg-white hover:scale-105 active:scale-95 border border-lava/10"
             aria-label="Next reviews"
