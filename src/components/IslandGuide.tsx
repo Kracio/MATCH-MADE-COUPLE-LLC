@@ -19,44 +19,55 @@ export function IslandGuide({ content }: IslandGuideProps) {
 
     const cardsCount = content.cards.length;
     const reduceMotion = prefersReducedMotion();
+    const panels = gsap.utils.toArray<HTMLElement>("[data-island-panel]", sectionRef.current);
+
+    if (reduceMotion) {
+      gsap.set(rightContainerRef.current, { y: 0, clearProps: "transform" });
+      gsap.set(panels, { autoAlpha: 1, x: 0, y: 0, scale: 1, clearProps: "transform" });
+      return;
+    }
+
+    const media = gsap.matchMedia(sectionRef.current);
     
-    // Create a pinning scroll trigger timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top top",
-        end: `+=${cardsCount * 60}%`, // Reduced scroll distance for faster scrolling
-        pin: true,
-        scrub: reduceMotion ? true : 0.1, // Almost instant scrubbing catch-up
-        snap: reduceMotion ? undefined : {
-          snapTo: 1 / (cardsCount - 1),
-          duration: 0.3, // Faster snap animation
-          delay: 0, // No delay before snapping
-          ease: "power2.inOut"
-        },
-        onUpdate: (self) => {
-          // Update active index based on progress
-          const progress = self.progress;
-          const index = Math.round(progress * (cardsCount - 1));
-          
-          setActiveIndex((prev) => (prev !== index ? index : prev));
-          
-          // Update visual progress bar (moving top down)
-          if (progressRef.current) {
-            gsap.set(progressRef.current, { yPercent: progress * 300 });
+    media.add("(min-width: 1024px)", () => {
+      // Create a desktop-only pinning scroll trigger timeline.
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${cardsCount * 60}%`,
+          pin: true,
+          scrub: 0.1,
+          snap: {
+            snapTo: 1 / (cardsCount - 1),
+            duration: 0.3,
+            delay: 0,
+            ease: "power2.inOut"
+          },
+          onUpdate: (self) => {
+            const progress = self.progress;
+            const index = Math.round(progress * (cardsCount - 1));
+            
+            setActiveIndex((prev) => (prev !== index ? index : prev));
+            
+            if (progressRef.current) {
+              gsap.set(progressRef.current, { yPercent: progress * 300 });
+            }
           }
         }
-      }
-    });
+      });
 
-    // Move the right panel up as we scroll
-    tl.to(rightContainerRef.current, {
-      y: `-${(cardsCount - 1) * 100}svh`,
-      ease: "none"
+      // Move the right panel up as we scroll.
+      tl.to(rightContainerRef.current, {
+        y: `-${(cardsCount - 1) * 100}svh`,
+        ease: "none"
+      });
+
+      return () => tl.kill();
     });
 
     return () => {
-      tl.kill();
+      media.revert();
     };
   }, { scope: sectionRef, dependencies: [content.cards.length] });
 
@@ -91,14 +102,19 @@ export function IslandGuide({ content }: IslandGuideProps) {
         top: scrollPos,
         behavior: prefersReducedMotion() ? "auto" : "smooth"
       });
+      return;
     }
+
+    sectionRef.current
+      ?.querySelector<HTMLElement>(`[data-island-panel="${index}"]`)
+      ?.scrollIntoView({ block: "start", behavior: prefersReducedMotion() ? "auto" : "smooth" });
   };
 
   return (
-    <section id={content.id} ref={sectionRef} className="relative flex w-full h-[100svh] overflow-hidden bg-[#FBFAF6] border-y border-palm/10">
+    <section id={content.id} ref={sectionRef} className="relative flex w-full min-h-[100dvh] overflow-hidden bg-[#FBFAF6] border-y border-palm/10 lg:h-[100svh]">
       
       {/* Left Side: Navigation */}
-      <aside className="hidden md:flex flex-col justify-start pt-[20vh] w-[30%] xl:w-1/3 h-full border-r border-palm/15 px-8 lg:px-16 xl:px-20 relative z-20 bg-[#FBFAF6]">
+      <aside className="hidden lg:flex flex-col justify-start pt-[20vh] w-[32%] xl:w-1/3 h-full border-r border-palm/15 px-10 xl:px-20 relative z-20 bg-[#FBFAF6]">
         <div className="flex flex-col gap-10 lg:gap-14">
           {content.cards.map((island, index) => {
             const isActive = activeIndex === index;
@@ -122,7 +138,7 @@ export function IslandGuide({ content }: IslandGuideProps) {
         </div>
         
         {/* Quote at bottom left */}
-        <div className="absolute bottom-12 lg:bottom-16 left-8 lg:left-16 xl:left-20 pr-8">
+        <div className="absolute bottom-12 lg:bottom-16 left-10 xl:left-20 pr-8">
           <p className="font-display italic text-sm lg:text-base xl:text-lg text-lava/70 max-w-[16rem]">
             "The islands are more than places on a map. They are a state of being, a breath of life, the mana of the Pacific."
           </p>
@@ -130,8 +146,8 @@ export function IslandGuide({ content }: IslandGuideProps) {
       </aside>
 
       {/* Right Side: GSAP Scrolled Content */}
-      <div className="flex-1 h-[100svh] overflow-hidden relative">
-        <div ref={rightContainerRef} className="w-full h-full will-change-transform">
+      <div className="relative h-auto flex-1 overflow-visible lg:h-[100svh] lg:overflow-hidden">
+        <div ref={rightContainerRef} className="h-auto w-full will-change-transform lg:h-full">
           {content.cards.map((island, index) => {
             const id = island.name.toLowerCase().replace(/[^a-z0-9]/g, '');
             const isEven = index % 2 !== 0;
@@ -140,17 +156,17 @@ export function IslandGuide({ content }: IslandGuideProps) {
                 key={island.name}
                 id={id} 
                 data-island-panel={index}
-                className="island-section relative w-full h-[100svh] overflow-hidden"
+                className="island-section relative min-h-[100dvh] w-full overflow-hidden lg:h-[100svh]"
               >
                 {/* Background styling for each section */}
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,#FFF8EE_0%,#F4E8D5_48%,#E7F4DC_100%)]"></div>
                 <div className="absolute inset-0 z-0 opacity-[0.05] [background-image:linear-gradient(90deg,rgb(79_124_120_/_0.32)_1px,transparent_1px),linear-gradient(0deg,rgb(47_79_62_/_0.2)_1px,transparent_1px)] [background-size:46px_46px]" aria-hidden="true" />
 
-                <div className={`relative z-10 w-full h-full flex flex-col ${isEven ? 'xl:flex-row-reverse' : 'xl:flex-row'} items-center justify-center gap-10 xl:gap-12 p-6 md:p-12 lg:p-16`}>
+                <div className={`relative z-10 flex min-h-[100dvh] w-full flex-col ${isEven ? 'xl:flex-row-reverse' : 'xl:flex-row'} items-center justify-center gap-8 p-5 py-14 sm:p-8 md:p-12 lg:h-full lg:min-h-0 lg:gap-10 lg:p-12 xl:gap-12 xl:p-16`}>
                   
                   {/* Image Polaroid */}
                   <div data-island-reveal className={`flex-1 flex justify-center ${isEven ? 'xl:justify-start' : 'xl:justify-end'} w-full`}>
-                    <div className={`bg-[#FBFAF6] p-4 sm:p-5 pb-10 sm:pb-12 ring-1 ring-tide/20 shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] w-full max-w-[18rem] sm:max-w-sm md:max-w-md ${isEven ? 'rotate-2 hover:rotate-0' : '-rotate-2 hover:rotate-0'} hover:-translate-y-4 hover:shadow-[0_35px_60px_-15px_rgba(47,79,62,0.3)]`}>
+                    <div className={`w-full max-w-[16.5rem] bg-[#FBFAF6] p-4 pb-10 ring-1 ring-tide/20 shadow-2xl transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] sm:max-w-sm sm:p-5 sm:pb-12 md:max-w-md ${isEven ? 'lg:rotate-2 lg:hover:rotate-0' : 'lg:-rotate-2 lg:hover:rotate-0'} lg:hover:-translate-y-4 lg:hover:shadow-[0_35px_60px_-15px_rgba(47,79,62,0.3)]`}>
                       <div className="aspect-[4/5] overflow-hidden bg-palm/10 mb-6">
                         <img alt={island.image.alt} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src={island.image.src}/>
                       </div>
@@ -167,7 +183,7 @@ export function IslandGuide({ content }: IslandGuideProps) {
                   {/* Text Content */}
                   <div data-island-reveal className={`flex-1 max-w-xl text-center ${isEven ? 'xl:text-right' : 'xl:text-left'} px-2 sm:px-0`}>
                     <span className="font-sans text-[10px] sm:text-xs font-bold text-lava/60 mb-3 sm:mb-4 block tracking-[0.3em] uppercase">{island.subtitle}</span>
-                    <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl text-palm mb-4 sm:mb-6 font-medium leading-[1.1]">{island.title}</h3>
+                    <h3 className="font-display text-[clamp(2.35rem,12vw,3.75rem)] sm:text-5xl lg:text-6xl text-palm mb-4 sm:mb-6 font-medium leading-[1.1]">{island.title}</h3>
                     <p className="text-base sm:text-lg text-lava/80 leading-relaxed mb-6 sm:mb-8">{island.description}</p>
                     
                     {island.href ? (
@@ -189,7 +205,7 @@ export function IslandGuide({ content }: IslandGuideProps) {
       </div>
 
       {/* Scroll Progress Indicator */}
-      <div className="hidden md:flex absolute top-[50svh] right-0 h-0 z-40 items-center justify-end pointer-events-none w-0">
+       <div className="hidden lg:flex absolute top-[50svh] right-0 h-0 z-40 items-center justify-end pointer-events-none w-0">
         <div className="absolute right-6 xl:right-12 -translate-y-1/2 w-[2px] h-32 bg-palm/10 rounded-full overflow-hidden">
           <div 
             ref={progressRef}

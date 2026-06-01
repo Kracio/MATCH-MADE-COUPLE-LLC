@@ -56,22 +56,19 @@ export function WorkWithUsPreview({ content }: WorkWithUsPreviewProps) {
   );
 
   return (
-    <section id={content.id} className="relative flex w-full flex-col justify-center items-center px-4 pt-20 pb-0 sm:px-6 lg:px-8 lg:pt-32 lg:pb-0 bg-[#FDFCF8] z-20">
-      
-      {/* Background Texture (subtle) */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] [background-image:linear-gradient(90deg,rgb(79_124_120)_1px,transparent_1px),linear-gradient(0deg,rgb(47_79_62)_1px,transparent_1px)] [background-size:46px_46px]" aria-hidden="true" />
+    <section id={content.id} className="relative z-20 flex w-full flex-col items-center justify-center bg-transparent px-4 pt-20 pb-0 sm:px-6 lg:px-8 lg:pt-32 lg:pb-0">
 
       <div className="mx-auto grid w-full max-w-[76rem] grid-cols-1 items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-24 relative z-10">
         
         {/* Image/Visual Column (Left - Scrapbook) */}
-        <div ref={visualRef} className="relative group order-2 lg:order-1 mt-12 lg:mt-0 flex justify-center lg:justify-start" data-reveal="fade-right">
+        <div ref={visualRef} className="group relative order-2 mt-10 flex min-h-[31rem] w-full max-w-[32rem] justify-center lg:order-1 lg:mt-0 lg:min-h-0 lg:max-w-none lg:justify-start" data-reveal="fade-right">
           
           {/* Decorative Tape Element Top */}
           <div className="absolute -top-6 left-1/3 w-24 h-8 bg-tide/30 rotate-3 hidden lg:block mix-blend-multiply rounded-sm z-20 shadow-sm" />
 
           {/* Secondary Polaroid (Boat/UFO) - placed behind and angled */}
           {content.secondaryImage && (
-            <div data-parallax="16" className="absolute -left-4 -bottom-14 z-10 w-3/4 sm:-left-12 sm:-bottom-24 sm:w-4/5">
+            <div data-parallax="16" className="absolute bottom-0 left-2 z-10 w-[70%] sm:-left-12 sm:-bottom-24 sm:w-4/5">
               <div ref={backLayerRef} className="relative bg-[#FBFAF6] p-3 pb-10 opacity-0 shadow-[0_15px_50px_rgba(47,79,62,0.15)] ring-1 ring-tide/20 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-2 hover:-rotate-4 motion-reduce:opacity-100 motion-reduce:hover:translate-y-0 motion-reduce:hover:-rotate-6">
                 <div className="absolute -top-4 right-8 z-20 h-6 w-16 -rotate-12 rounded-sm bg-tide/20 mix-blend-multiply shadow-sm" />
                 <img 
@@ -87,7 +84,7 @@ export function WorkWithUsPreview({ content }: WorkWithUsPreviewProps) {
           )}
 
           {/* Main Polaroid (Camera) */}
-          <div className="bg-[#FBFAF6] p-3 sm:p-4 pb-10 sm:pb-14 shadow-[0_20px_60px_rgba(74,44,36,0.12)] transform rotate-3 transition-transform duration-700 ease-out hover:rotate-1 ring-1 ring-tide/20 relative z-20 w-full max-w-[20rem] sm:max-w-[24rem] ml-auto lg:ml-8">
+          <div className="relative z-20 ml-auto w-[82%] max-w-[20rem] rotate-3 transform bg-[#FBFAF6] p-3 pb-10 shadow-[0_20px_60px_rgba(74,44,36,0.12)] ring-1 ring-tide/20 transition-transform duration-700 ease-out hover:rotate-1 sm:max-w-[24rem] sm:p-4 sm:pb-14 lg:ml-8 lg:w-full">
             <img 
               alt={content.image.alt}
               className="w-full h-auto aspect-[4/5] object-cover grayscale-[10%] sepia-[10%] transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:sepia-0"
@@ -99,14 +96,14 @@ export function WorkWithUsPreview({ content }: WorkWithUsPreviewProps) {
           </div>
 
           {/* Curated Experiences Paper Scrap */}
-          <div data-parallax="22" className="absolute -left-6 sm:-left-16 top-1/3 w-32 sm:w-40 bg-[#EFEBE1] p-4 shadow-lg transform -rotate-12 z-30 border border-tide/10">
+          <div data-parallax="22" className="absolute left-0 top-1/3 z-30 w-28 -rotate-12 transform border border-tide/10 bg-[#EFEBE1] p-3 shadow-lg min-[390px]:w-32 sm:-left-16 sm:w-40 sm:p-4">
             <p className="font-sans text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.2em] text-palm/80 leading-relaxed text-center">
               CURATED<br/>EXPERIENCES<br/>MEANINGFUL<br/>STORYTELLING
             </p>
           </div>
 
           {/* Hawaii Stamp */}
-          <div className="absolute right-[-1rem] sm:right-[-2rem] bottom-0 w-24 h-24 rounded-full border-[1.5px] border-palm/40 flex flex-col items-center justify-center text-center transform rotate-12 z-30 opacity-70">
+          <div className="absolute bottom-8 right-0 z-30 flex h-20 w-20 rotate-12 transform flex-col items-center justify-center rounded-full border-[1.5px] border-palm/40 text-center opacity-70 sm:bottom-0 sm:right-[-2rem] sm:h-24 sm:w-24">
             <span className="font-sans text-[10px] tracking-widest text-palm uppercase absolute top-2">HAWAII</span>
             <span className="font-sans text-[8px] tracking-widest text-palm mt-6">EST. 1959</span>
             {/* Inner dashed ring */}
@@ -131,7 +128,7 @@ export function WorkWithUsPreview({ content }: WorkWithUsPreviewProps) {
           )}
 
           <div className="py-2 relative">
-            <h2 className="font-display text-5xl font-semibold leading-[0.95] tracking-[-0.02em] text-palm sm:text-6xl lg:text-[5.5rem] mb-6 relative z-10">
+            <h2 className="relative z-10 mb-6 font-display text-[clamp(3rem,15vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-palm lg:text-[5.5rem]">
               WORK WITH<br/>US<span className="text-tide italic">{content.headingAccent}</span>
             </h2>
             <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-lava/80 max-w-prose relative z-10">

@@ -24,22 +24,19 @@ export function HomeReviews({ content }: HomeReviewsProps) {
   };
 
   return (
-    <section id={content.id} className="relative w-full overflow-hidden bg-[#FDFCF8]">
-      
-      {/* Background Texture (subtle) - Continuing from WorkWithUs */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] [background-image:linear-gradient(90deg,rgb(79_124_120)_1px,transparent_1px),linear-gradient(0deg,rgb(47_79_62)_1px,transparent_1px)] [background-size:46px_46px]" aria-hidden="true" />
+    <section id={content.id} className="relative w-full overflow-hidden bg-transparent">
 
       {/* Main Container */}
-      <div data-reveal-stagger className="mx-auto w-full max-w-[85rem] px-0 pt-8 pb-0 lg:pt-16 lg:pb-0 relative z-10 flex flex-col items-center">
+      <div data-reveal-stagger className="relative z-10 mx-auto flex w-full max-w-[85rem] flex-col items-center px-0 pt-2 pb-0 lg:pt-6 lg:pb-0">
 
         {/* Carousel Wrapper */}
-        <div className="relative w-full flex items-center justify-center group">
+        <div className="group relative flex w-full items-center justify-center">
 
           {/* Left Arrow */}
           <button
             data-reveal-child
             onClick={scrollLeft}
-            className="absolute left-2 lg:-left-6 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#FDFCF8]/90 text-lava shadow-[0_4px_20px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all hover:bg-white hover:scale-105 active:scale-95 border border-lava/10"
+            className="absolute left-2 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-lava/10 bg-[#FDFCF8]/90 text-lava shadow-[0_4px_20px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all hover:scale-105 hover:bg-white active:scale-95 sm:h-12 sm:w-12 lg:-left-6"
             aria-label="Previous reviews"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,7 +47,7 @@ export function HomeReviews({ content }: HomeReviewsProps) {
           {/* Horizontal Carousel Container */}
           <div
             ref={scrollContainerRef}
-            className="flex flex-row overflow-x-auto snap-x snap-mandatory items-center gap-4 lg:gap-6 pt-10 pb-24 px-16 sm:px-20 w-full justify-start md:justify-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="flex w-full snap-x snap-mandatory flex-row items-center justify-start gap-4 overflow-x-auto px-14 pt-10 pb-20 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-20 md:justify-center lg:gap-6 lg:pb-24 [&::-webkit-scrollbar]:hidden"
           >
             {topReviews.map((review, index) => {
               const isCenter = index === 1;
@@ -58,7 +55,7 @@ export function HomeReviews({ content }: HomeReviewsProps) {
                 <article
                   key={review.author}
                   data-reveal-child
-                  className={`flex-none snap-center flex flex-col justify-between rounded-xl sm:rounded-2xl p-6 lg:p-8 shadow-2xl transition-all duration-500 w-[80vw] sm:w-[22rem] lg:w-[26rem] h-[22rem] lg:h-[24rem] shrink-0 ${isCenter
+                  className={`flex h-[22rem] w-[min(82vw,22rem)] flex-none shrink-0 snap-center flex-col justify-between rounded-xl p-6 shadow-2xl transition-all duration-500 sm:rounded-2xl lg:h-[24rem] lg:w-[26rem] lg:p-8 ${isCenter
                     ? "bg-[#FDFCF8] scale-100 z-20 opacity-100"
                     : "bg-[#FDFCF8]/80 scale-90 sm:scale-95 z-10 opacity-70 hover:opacity-100 cursor-pointer backdrop-blur-md"
                     }`}
@@ -90,7 +87,7 @@ export function HomeReviews({ content }: HomeReviewsProps) {
           <button
             data-reveal-child
             onClick={scrollRight}
-            className="absolute right-2 lg:-right-6 z-30 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-[#FDFCF8]/90 text-lava shadow-[0_4px_20px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all hover:bg-white hover:scale-105 active:scale-95 border border-lava/10"
+            className="absolute right-2 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-lava/10 bg-[#FDFCF8]/90 text-lava shadow-[0_4px_20px_rgba(0,0,0,0.1)] backdrop-blur-md transition-all hover:scale-105 hover:bg-white active:scale-95 sm:h-12 sm:w-12 lg:-right-6"
             aria-label="Next reviews"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

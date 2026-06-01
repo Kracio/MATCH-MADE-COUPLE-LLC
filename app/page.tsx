@@ -17,8 +17,16 @@ export default function Home() {
         <HomeIntro content={siteContent.intro} />
         <IslandGuide content={siteContent.islands} />
         <Resources content={siteContent.resources} />
-        <WorkWithUsPreview content={siteContent.workWithUs} />
-        <HomeReviews content={siteContent.reviews} />
+        <div className="relative bg-[#FDFCF8]">
+          <div
+            className="pointer-events-none absolute inset-0 z-0 opacity-[0.03] [background-image:linear-gradient(90deg,rgb(79_124_120)_1px,transparent_1px),linear-gradient(0deg,rgb(47_79_62)_1px,transparent_1px)] [background-size:46px_46px]"
+            aria-hidden="true"
+          />
+          <div className="relative z-10">
+            <WorkWithUsPreview content={siteContent.workWithUs} />
+            <HomeReviews content={siteContent.reviews} />
+          </div>
+        </div>
         <HomeContact content={siteContent.contact} />
       </main>
       <Footer content={siteContent.footer} />

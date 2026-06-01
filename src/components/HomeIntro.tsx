@@ -10,7 +10,7 @@ export function HomeIntro({ content }: HomeIntroProps) {
   const [headingLead, headingTail = ""] = content.heading.split(headingAccent);
 
   return (
-    <section className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden px-4 pb-0 pt-[100px] sm:px-6 sm:pb-0 sm:pt-[110px] lg:px-8 lg:pb-0 lg:pt-[130px] xl:pt-[140px]">
+    <section className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden px-4 pb-0 pt-[110px] sm:px-6 sm:pb-0 sm:pt-[110px] lg:px-8 lg:pb-0 lg:pt-[130px] xl:pt-[140px]">
       <div className="absolute inset-0 -z-30 bg-[#FBFAF6]" aria-hidden="true" />
       <div
         className="absolute inset-0 -z-20 opacity-[0.055] [background-image:linear-gradient(90deg,rgb(79_124_120_/_0.28)_1px,transparent_1px),linear-gradient(0deg,rgb(47_79_62_/_0.18)_1px,transparent_1px)] [background-size:44px_44px]"

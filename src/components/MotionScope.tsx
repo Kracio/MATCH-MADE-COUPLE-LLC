@@ -109,7 +109,7 @@ export function MotionScope({ children }: MotionScopeProps) {
       });
 
       const media = gsap.matchMedia(scope.current);
-      media.add("(min-width: 768px)", () => {
+      media.add("(min-width: 1024px)", () => {
         parallaxItems.forEach((item) => {
           const distance = Number(item.dataset.parallax) || 24;
           gsap.to(item, {

@@ -13,7 +13,7 @@ export function LinkButton({ href, children, variant = "primary" }: LinkButtonPr
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-3 rounded-full px-5 py-2.5 text-sm font-bold uppercase tracking-[0.16em] shadow-[0_18px_55px_rgb(74_44_36_/_0.12)] active:scale-[0.98] ${classes}`}
+      className={`group inline-flex min-h-11 items-center gap-3 rounded-full px-5 py-2.5 text-sm font-bold uppercase tracking-[0.16em] shadow-[0_18px_55px_rgb(74_44_36_/_0.12)] active:scale-[0.98] ${classes}`}
     >
       <span>{children}</span>
       <span
