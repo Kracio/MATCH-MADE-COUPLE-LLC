@@ -97,7 +97,7 @@ export const siteContent = {
         title: "Primal Resonance",
         description: "In the emerald folds of the Na Pali Coast, time stands still. Kaua'i is the oldest child of the volcanic chain, a masterwork of erosion and growth where ancient waterfalls carve secrets into cathedral-like spires.",
         coordinates: "NA PALI COAST · 22.1° N, 159.6° W",
-        href: `${homeUrl}/kauai-hawaii/`,
+        href: "/kauai-hawaii/",
         image: {
           src: "/img/kauai.webp",
           alt: "Kaua’i Hawaii island guide cover",
@@ -109,7 +109,7 @@ export const siteContent = {
         title: "Golden Epiphany",
         description: "Maui exists in the balance between the celestial and the terrestrial. From the lunar landscape of Haleakalā to the winding Road to Hana, it is an island of dramatic contrasts and sun-drenched spirit.",
         coordinates: "TROPICAL RAINFOREST · 20.7° N, 156.0° W",
-        href: `${homeUrl}/maui-hawaii/`,
+        href: "/maui-hawaii/",
         image: {
           src: "/img/maui.webp",
           alt: "Maui Hawaii island guide cover",
@@ -121,7 +121,7 @@ export const siteContent = {
         title: "Forged in Fire",
         description: "Here, the earth is still being born. The Big Island is a landscape of raw creation, where Pele’s molten breath meets the cool Pacific, building new land in a spectacular display of geological power.",
         coordinates: "KĪLAUEA · 19.4° N, 155.2° W",
-        href: `${homeUrl}/the-big-island-hawaii/`,
+        href: "/the-big-island-hawaii/",
         image: {
           src: "/img/big-island.webp",
           alt: "Big Island Hawaii guide cover",
