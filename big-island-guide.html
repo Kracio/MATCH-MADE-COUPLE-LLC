@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Big Island — The Land of Lava | Match Made Couple</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:    #0a0a09;
+  --dark:     #111110;
+  --dark2:    #1a1a18;
+  --dark3:    #242422;
+  --gold:     #c9a96e;
+  --gold2:    #e8c98a;
+  --cream:    #f4efe6;
+  --cream2:   #e8dfd0;
+  --text:     #d4cfc6;
+  --muted:    #8a8680;
+  --border:   rgba(201,169,110,0.18);
+  --lava:     #c0392b;
+  --lava2:    #e74c3c;
+  --radius:   4px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--black);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  background: linear-gradient(to bottom, rgba(10,10,9,0.95) 0%, transparent 100%);
+  border-bottom: 1px solid rgba(201,169,110,0.08);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-weight: 400;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none;
+}
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  height: 100vh; min-height: 700px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 80px 80px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1526512340740-9217d0159da9?w=1800&q=80');
+  background-size: cover; background-position: center 40%;
+  filter: brightness(0.4);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,10,9,0.97) 0%, rgba(10,10,9,0.3) 50%, rgba(10,10,9,0.1) 100%);
+}
+.hero-coords {
+  position: absolute; top: 120px; right: 80px;
+  font-size: 10px; letter-spacing: 0.2em;
+  color: var(--gold); opacity: 0.7;
+  writing-mode: vertical-rl; text-orientation: mixed;
+}
+.hero-content { position: relative; max-width: 700px; }
+.hero-tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gold);
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(64px, 9vw, 110px);
+  font-weight: 300;
+  line-height: 0.9;
+  color: var(--cream);
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+.hero h1 em { font-style: italic; color: var(--gold2); }
+.hero-sub {
+  font-size: 12px; font-weight: 400;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 32px;
+}
+.hero-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px; font-weight: 300; font-style: italic;
+  line-height: 1.6;
+  color: rgba(212,207,198,0.8);
+  max-width: 520px;
+}
+.hero-scroll {
+  position: absolute; bottom: 80px; right: 80px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-scroll::before {
+  content: ''; display: block;
+  width: 40px; height: 1px;
+  background: var(--gold); opacity: 0.4;
+}
+
+/* ── SECTION BASE ── */
+.section { padding: 100px 80px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-tag {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold);
+  display: block; margin-bottom: 20px;
+}
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin-bottom: 20px;
+}
+h2 em { font-style: italic; color: var(--gold2); }
+.lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-style: italic;
+  color: rgba(212,207,198,0.75);
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+p.body-text {
+  font-size: 13px; font-weight: 300;
+  color: var(--muted);
+  line-height: 1.9;
+  max-width: 620px;
+  margin-bottom: 16px;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  width: calc(100% - 160px); height: 1px;
+  background: var(--border);
+  margin: 0 80px;
+}
+.gold-line {
+  display: flex; align-items: center; gap: 20px;
+  margin-bottom: 60px;
+}
+.gold-line::before, .gold-line::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border);
+}
+.gold-line span {
+  font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); opacity: 0.7;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-block;
+  padding: 13px 28px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s; cursor: pointer;
+}
+.btn-gold { background: var(--gold); color: var(--black); border: 1px solid var(--gold); }
+.btn-gold:hover { background: var(--gold2); border-color: var(--gold2); }
+.btn-outline { background: transparent; color: var(--gold); border: 1px solid rgba(201,169,110,0.5); }
+.btn-outline:hover { border-color: var(--gold); background: rgba(201,169,110,0.08); }
+.btn-ghost { background: transparent; color: var(--muted); border: 1px solid rgba(138,134,128,0.3); }
+.btn-ghost:hover { color: var(--cream); border-color: var(--muted); }
+.btn-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* ── INTRO SPLIT ── */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.intro-image {
+  position: relative;
+  aspect-ratio: 3/4; overflow: hidden;
+}
+.intro-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85);
+  transition: transform 0.8s ease;
+}
+.intro-image:hover img { transform: scale(1.04); }
+.intro-image-label {
+  position: absolute; bottom: 24px; left: 24px;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); opacity: 0.8;
+}
+.intro-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 120px; font-weight: 300;
+  color: rgba(201,169,110,0.06);
+  line-height: 1; margin-bottom: -30px;
+}
+
+/* ── VOLCANOS ZONE MAP ── */
+.zone-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 56px;
+}
+.zone-card {
+  background: var(--dark2);
+  padding: 32px 24px;
+  border: 1px solid var(--border);
+  transition: background 0.3s, border-color 0.3s;
+}
+.zone-card:hover { background: var(--dark3); border-color: rgba(201,169,110,0.35); }
+.zone-badge {
+  font-size: 9px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 14px;
+}
+.zone-card h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 400;
+  color: var(--cream); margin-bottom: 10px; line-height: 1.2;
+}
+.zone-card p { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+/* ── BUCKET LIST ── */
+.bucket-section { background: var(--dark); }
+.bucket-items { display: flex; flex-direction: column; gap: 2px; margin-top: 60px; }
+.bucket-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 320px;
+  gap: 48px; align-items: start;
+  padding: 44px 0;
+  border-top: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+.bucket-item:last-child { border-bottom: 1px solid var(--border); }
+.bucket-item:hover { border-color: rgba(201,169,110,0.35); }
+.bucket-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px; font-weight: 300;
+  color: rgba(201,169,110,0.25); line-height: 1;
+}
+.bucket-body h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 400;
+  color: var(--cream); line-height: 1.2; margin-bottom: 12px;
+}
+.bucket-body p { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.8; }
+.bucket-image { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+.bucket-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+.bucket-item:hover .bucket-image img { transform: scale(1.05); filter: brightness(0.9); }
+
+/* ── REGIONS ── */
+.region { border-top: 1px solid var(--border); }
+.region-hero {
+  position: relative;
+  height: 60vh; min-height: 480px;
+  display: flex; align-items: flex-end;
+  padding: 60px 80px; overflow: hidden;
+}
+.region-hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  filter: brightness(0.35);
+}
+.region-hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,10,9,0.9) 0%, transparent 60%);
+}
+.region-hero-content { position: relative; }
+.region-tag {
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 12px;
+}
+.region-hero h2 { font-size: clamp(40px, 6vw, 72px); margin-bottom: 8px; }
+.region-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic;
+  color: rgba(212,207,198,0.7); max-width: 560px;
+}
+.region-body { padding: 72px 80px; background: var(--dark); }
+.region-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+}
+.region-col-title {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px; display: block;
+}
+.region-item { margin-bottom: 20px; }
+.region-item strong {
+  display: block;
+  font-size: 13px; font-weight: 500;
+  color: var(--cream); margin-bottom: 3px;
+}
+.region-item span { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.region-item .btn-group { margin-top: 14px; }
+
+/* ── HIGHLIGHT BOX ── */
+.highlight-box {
+  margin-top: 48px; padding: 36px;
+  border: 1px solid var(--border);
+  background: rgba(201,169,110,0.04);
+}
+.highlight-box .kicker {
+  font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 12px;
+}
+.highlight-box h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; font-style: italic;
+  color: var(--cream); margin-bottom: 10px;
+}
+.highlight-box p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+/* ── BEACHES GRID ── */
+.beach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 56px;
+}
+.beach-card {
+  position: relative; aspect-ratio: 3/4; overflow: hidden;
+}
+.beach-card img {
+  width: 100%; height: 100%;
+  object-fit: cover; filter: brightness(0.6);
+  transition: transform 0.7s ease, filter 0.6s ease;
+}
+.beach-card:hover img { transform: scale(1.06); filter: brightness(0.8); }
+.beach-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(10,10,9,0.9) 0%, transparent 100%);
+}
+.beach-info strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 400;
+  color: var(--cream); display: block; margin-bottom: 4px;
+}
+.beach-info span { font-size: 11px; color: var(--muted); }
+.beach-badge {
+  position: absolute; top: 16px; left: 16px;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(10,10,9,0.7);
+  padding: 5px 10px;
+}
+
+/* ── FOOD SECTION ── */
+.food-section { background: var(--black); }
+.food-zones {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px; margin-top: 56px;
+}
+.food-zone-title {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px; display: block;
+}
+.food-item {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(201,169,110,0.07);
+}
+.food-item strong {
+  font-size: 13px; font-weight: 500;
+  color: var(--cream); display: block; margin-bottom: 2px;
+}
+.food-item span { font-size: 12px; color: var(--muted); }
+
+/* ── SAFETY STRIP ── */
+.safety-strip {
+  background: rgba(201,169,110,0.05);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 80px;
+}
+.safety-strip .section-tag { margin-bottom: 28px; }
+.safety-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.safety-item strong {
+  font-size: 12px; font-weight: 500;
+  color: var(--cream); display: block; margin-bottom: 6px;
+}
+.safety-item span { font-size: 11px; color: var(--muted); line-height: 1.7; }
+
+/* ── PROMO STRIP ── */
+.promo-strip {
+  background: var(--gold);
+  padding: 60px 80px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px;
+}
+.promo-strip h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 400;
+  color: var(--black); line-height: 1.1;
+}
+.promo-strip p { font-size: 12px; color: rgba(10,10,9,0.65); margin-top: 8px; }
+.btn-black { background: var(--black); color: var(--gold); border: 1px solid var(--black); white-space: nowrap; }
+.btn-black:hover { background: var(--dark2); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  padding: 64px 80px 40px;
+  border-top: 1px solid var(--border);
+}
+.footer-top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 60px; margin-bottom: 48px;
+}
+.footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--cream); letter-spacing: 0.05em;
+}
+.footer-tagline {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-top: 6px;
+}
+.footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
+.footer-links a {
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-size: 11px; color: rgba(138,134,128,0.5); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 18px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 0 24px 60px; }
+  .hero-coords { display: none; }
+  .section { padding: 72px 24px; }
+  .divider { margin: 0 24px; width: calc(100% - 48px); }
+  .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+  .intro-num { font-size: 80px; }
+  .zone-grid { grid-template-columns: 1fr 1fr; }
+  .bucket-item { grid-template-columns: 60px 1fr; }
+  .bucket-image { display: none; }
+  .region-hero { padding: 40px 24px; }
+  .region-body { padding: 48px 24px; }
+  .region-cols { grid-template-columns: 1fr; gap: 36px; }
+  .beach-grid { grid-template-columns: 1fr; }
+  .food-zones { grid-template-columns: 1fr; }
+  .safety-strip { padding: 48px 24px; }
+  .safety-items { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .promo-strip { flex-direction: column; padding: 48px 24px; }
+  footer { padding: 48px 24px 32px; }
+  .footer-top { flex-direction: column; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://matchmadecouple.com/">Match Made Couple</a>
+  <div class="nav-links">
+    <a href="#experiences">Experiences</a>
+    <a href="#kona">Kona</a>
+    <a href="#mantas">Manta Rays</a>
+    <a href="#volcanoes">Volcanoes</a>
+    <a href="#hilo">Hilo</a>
+    <a href="#beaches">Beaches</a>
+    <a href="#food">Food</a>
+    <a href="https://matchmadecouple.com/the-islands-of-hawaii/">All Islands</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-coords">19.8° N &nbsp;·&nbsp; 155.7° W &nbsp;·&nbsp; THE LAND OF LAVA</div>
+  <div class="hero-content">
+    <span class="hero-tag">Kilauea · Mauna Kea · Manta Rays · Hawai'i Island</span>
+    <h1>The <em>Big</em><br>Island</h1>
+    <p class="hero-sub">The Land of Lava</p>
+    <p class="hero-desc">The youngest, largest, and most geologically alive island on Earth — where lava still flows, volcanoes still breathe, and the landscape changes in real time.</p>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- INTRO -->
+<section class="section" id="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div>
+        <div class="intro-num">01</div>
+        <span class="section-tag">Hawai'i Island</span>
+        <h2>A Living <em>Landscape</em></h2>
+        <p class="body-text">The Big Island is the only Hawaiian island officially named Hawai'i — and for good reason. It's bigger than all the other islands combined, home to six distinct climate zones, and shaped by six volcanoes: Kilauea, Mauna Loa, Mauna Kea, Hualalai, Kohala, and Kama'ehuakanaloa rising from the sea floor below.</p>
+        <p class="body-text">This is the island for travelers who want to stand at the edge of an active crater, swim alongside manta rays at night, drive through coffee farms on volcanic hillsides, and watch the sunset from above the clouds. No two days here look the same — and no other island on the planet offers this kind of raw, living spectacle.</p>
+        <p class="body-text">Below, we break it all down: the must-do experiences, the best regions, where to eat, and how to do it all responsibly.</p>
+      </div>
+      <div class="intro-image">
+        <img src="https://images.unsplash.com/photo-1565768234208-e7cc1a95e9e5?w=800&q=80" alt="Lava flowing into ocean Big Island Hawaii" loading="lazy" />
+        <span class="intro-image-label">Hawai'i Island · Active Lava</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- QUICK ZONE OVERVIEW -->
+<section class="section" style="background: var(--dark);" id="zones">
+  <div class="container">
+    <span class="section-tag">Island Overview</span>
+    <h2>Know the <em>Zones</em></h2>
+    <p class="lead">The Big Island is enormous — plan by region so you're not driving four hours between activities.</p>
+    <div class="zone-grid">
+      <div class="zone-card">
+        <span class="zone-badge">West Coast</span>
+        <h4>Kona</h4>
+        <p>Coffee farms, snorkeling, the famous manta ray night dives, parasailing, and a real submarine ride.</p>
+      </div>
+      <div class="zone-card">
+        <span class="zone-badge">North</span>
+        <h4>Kohala</h4>
+        <p>Oldest volcano on the island. Ziplines over waterfalls, black sand beaches, and Pololu Valley lookout.</p>
+      </div>
+      <div class="zone-card">
+        <span class="zone-badge">East Coast</span>
+        <h4>Hilo</h4>
+        <p>Rainforest waterfalls, tsunami history, botanical gardens, and the island's most authentic local culture.</p>
+      </div>
+      <div class="zone-card">
+        <span class="zone-badge">Summit</span>
+        <h4>Mauna Kea</h4>
+        <p>13,796 ft above sea level. Sunrise above the clouds is one of the most surreal experiences on Earth.</p>
+      </div>
+      <div class="zone-card">
+        <span class="zone-badge">Mid-Island</span>
+        <h4>Umauma</h4>
+        <p>Adventure hub — ziplines, ATV rides, waterfall rappelling, and private waterfall swims all in one place.</p>
+      </div>
+      <div class="zone-card">
+        <span class="zone-badge">Crater Rim</span>
+        <h4>Volcano Village</h4>
+        <p>Charming, artistic, and perfectly positioned as your base for Hawai'i Volcanoes National Park.</p>
+      </div>
+      <div class="zone-card">
+        <span class="zone-badge">National Park</span>
+        <h4>Volcanoes NP</h4>
+        <p>Kilauea — the world's most active volcano. Plan a full day minimum for trails, lava tubes, and overlooks.</p>
+      </div>
+      <div class="zone-card">
+        <span class="zone-badge">Active Volcano</span>
+        <h4>Hualalai</h4>
+        <p>Guided hike only. Native cloud forest, craters, and lava tubes on an active volcano — unlike anything else.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BUCKET LIST -->
+<section class="section bucket-section" id="experiences">
+  <div class="container">
+    <div class="gold-line"><span>Must Do</span></div>
+    <span class="section-tag">Bucket List</span>
+    <h2>Top <em>Experiences</em></h2>
+    <p class="lead">These are the absolute standouts — the kind of experiences that define a trip to the Big Island.</p>
+
+    <div class="bucket-items">
+
+      <!-- 01 -->
+      <div class="bucket-item">
+        <div class="bucket-num">01</div>
+        <div class="bucket-body">
+          <h3>Manta Ray Night Snorkel</h3>
+          <p>One of the most extraordinary wildlife encounters on the planet. Each night, lights attract plankton to the surface near Kona — and the manta rays follow. You float above them as they barrel-roll through the water just inches away. No cages, no captivity — completely wild. Choose an eco-focused operator with small groups and responsible lighting practices.</p>
+          <div class="btn-group">
+            <a class="btn btn-gold" href="https://www.viator.com/tours/Big-Island-of-Hawaii/Manta-Magic-Night-Manta-Ray-Snorkel/d669-40277P1?campaign=SNORKELMANTARAYS&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Manta Ray Night Snorkel</a>
+            <a class="btn btn-outline" href="https://fareharbor.com/embeds/book/konahonudivers/items/1482/?asn=fhdn&asn-ref=matchmadecouple&bookable-only=yes&branding=no&flow=no&full-items=yes&marketplace=yes&ref=matchmadecouple" target="_blank" rel="noopener">2-Tank Manta Dive (Certified)</a>
+          </div>
+        </div>
+        <div class="bucket-image">
+          <img src="https://images.unsplash.com/photo-1682687981603-ae874bf432f2?w=700&q=80" alt="Manta ray underwater night snorkel Hawaii" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="bucket-item">
+        <div class="bucket-num">02</div>
+        <div class="bucket-body">
+          <h3>Hawai'i Volcanoes National Park</h3>
+          <p>Kilauea is the most active volcano on Earth — and you can walk right up to its edge. The park spans Kilauea and Mauna Loa, with trails through lava tubes, past steam vents, and along the Crater Rim. At night, the glow of the caldera turns the sky red. Plan for a full day minimum, bring a jacket — the park sits at 4,000 ft and gets cold and windy.</p>
+          <div class="btn-group">
+            <a class="btn btn-outline" href="https://www.nps.gov/havo/planyourvisit/eruption-viewing.htm" target="_blank" rel="noopener">Live Eruption Cams & Info</a>
+          </div>
+        </div>
+        <div class="bucket-image">
+          <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=700&q=80" alt="Kilauea volcano crater glowing lava Hawaii Volcanoes National Park" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- 03 -->
+      <div class="bucket-item">
+        <div class="bucket-num">03</div>
+        <div class="bucket-body">
+          <h3>Mauna Kea Sunrise or Sunset</h3>
+          <p>Nearly 14,000 feet above sea level — and above most of the atmosphere. The cloud inversion below you is unlike anything you'll see from the ground. Dress in proper winter layers (temperatures below freezing, strong winds), acclimatize at the visitor center before continuing, and know that the summit closes 30 minutes after sunset and reopens 30 minutes before sunrise.</p>
+        </div>
+        <div class="bucket-image">
+          <img src="https://images.unsplash.com/photo-1542574271-7f3b92e6c821?w=700&q=80" alt="Mauna Kea summit above clouds Hawaii sunrise" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- 04 -->
+      <div class="bucket-item">
+        <div class="bucket-num">04</div>
+        <div class="bucket-body">
+          <h3>Kohala Zipline Over Waterfalls</h3>
+          <p>Kohala is the island's oldest and most lush volcano, with emerald valleys carved over a million years. The zipline canopy tours here run above the treetops and — depending on the tour — dip you directly into a private waterfall pool. One of the most visually spectacular adventure experiences on any Hawaiian island.</p>
+          <div class="btn-group">
+            <a class="btn btn-gold" href="https://www.viator.com/tours/Big-Island-of-Hawaii/Full-Day-Small-Group-Adventure-Kohala-Zip-and-Dip-Tour/d669-5496P3?campaign=KOHALAZIPANDDIP&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Zipline + Waterfall Dip</a>
+            <a class="btn btn-outline" href="https://www.viator.com/tours/Big-Island-of-Hawaii/Big-Island-Kohala-Canopy-Zipline-Adventure/d669-5496ZIPLINE?campaign=KOHALAZIP&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Canopy Zipline Tour</a>
+          </div>
+        </div>
+        <div class="bucket-image">
+          <img src="https://images.unsplash.com/photo-1601027847350-0285867c31f7?w=700&q=80" alt="Zipline over tropical waterfall Hawaii" loading="lazy" />
+        </div>
+      </div>
+
+      <!-- 05 -->
+      <div class="bucket-item">
+        <div class="bucket-num">05</div>
+        <div class="bucket-body">
+          <h3>Real Submarine + Parasailing: Kona</h3>
+          <p>Two of the most unique experiences on the island, both based in Kona. The submarine descends over 100 feet — no wetsuit, no snorkel — for views of reef, turtles, and rays through panoramic windows. Parasailing at 1,200 ft gives you the coastline from above, including the signature "UFO dip" where you skim the surface before soaring back up. Do both in one day.</p>
+          <div class="btn-group">
+            <a class="btn btn-gold" href="https://www.viator.com/tours/Big-Island-of-Hawaii/Atlantis-Kona-Submarine-Adventure/d669-3524KSUB?campaign=ATLANTISKONA&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Real Submarine Dive</a>
+            <a class="btn btn-outline" href="https://www.viator.com/tours/Big-Island-of-Hawaii/Big-Island-Parasailing-Experience/d669-5161_KPAR03?campaign=UFOKONA&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Parasailing 1,200 ft</a>
+          </div>
+        </div>
+        <div class="bucket-image">
+          <img src="https://images.unsplash.com/photo-1504699439244-a2f1593c0b8a?w=700&q=80" alt="Parasailing over ocean Hawaii Kona coastline" loading="lazy" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KONA REGION -->
+<section class="region" id="kona">
+  <div class="region-hero">
+    <div class="region-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1589553416260-f586c8f1514f?w=1400&q=80');"></div>
+    <div class="region-hero-content">
+      <span class="region-tag">West Coast · Kona · 19.6° N</span>
+      <h2>Kona &amp;<br><em>Coffee Country</em></h2>
+      <p class="region-desc">The island's adventure and culinary capital — world-famous coffee, night manta dives, submarine rides, and a laid-back West Coast energy.</p>
+    </div>
+  </div>
+  <div class="region-body">
+    <div class="region-cols">
+      <div>
+        <span class="region-col-title">Kona Coffee</span>
+        <div class="region-item">
+          <strong>Hula Daddy — Award-Winning Tour</strong>
+          <span>Estate-grown Kona coffee with guided tastings, farm tour, and sweeping ocean views from the volcanic hillside.</span>
+          <div class="btn-group">
+            <a class="btn btn-outline" href="https://fareharbor.com/embeds/book/huladaddy/items/59635/?asn=fhdn&asn-ref=matchmadecouple&bookable-only=yes&branding=no&flow=no&full-items=yes&marketplace=yes&ref=matchmadecouple" target="_blank" rel="noopener">Book Award-Winning Tour</a>
+          </div>
+        </div>
+        <div class="region-item">
+          <strong>Heavenly Hawaiian — Unlimited Samples</strong>
+          <span>Organic estate tour with unlimited tasting samples — one of the most popular coffee experiences on the island.</span>
+          <div class="btn-group">
+            <a class="btn btn-outline" href="https://fareharbor.com/embeds/book/heavenlyhawaiian/items/266957/?asn=fhdn&asn-ref=matchmadecouple&bookable-only=yes&branding=no&flow=no&full-items=yes&marketplace=yes&ref=matchmadecouple" target="_blank" rel="noopener">Book Unlimited Samples Tour</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="region-col-title">Water Adventures</span>
+        <div class="region-item">
+          <strong>Atlantis Submarine</strong>
+          <span>100+ ft descent — no scuba, no wetsuit. Real submarine with panoramic windows. Tropical fish, turtles, and reef.</span>
+        </div>
+        <div class="region-item">
+          <strong>Parasailing at 1,200 ft</strong>
+          <span>Best views of the Kona Coast from above, including the famous UFO dip. Opt for 1,200 ft — always worth the upgrade.</span>
+        </div>
+        <div class="region-item">
+          <strong>Manta Village (Keauhou)</strong>
+          <span>The original manta ray viewing site, just offshore from the Outrigger Kona Resort. Night tours only.</span>
+        </div>
+        <div class="region-item">
+          <strong>Garden Eel Cove (Makako Bay)</strong>
+          <span>Also called Manta Heaven — near the airport. Used for daytime snorkeling and a second manta site at night.</span>
+        </div>
+      </div>
+      <div>
+        <span class="region-col-title">Food Stops</span>
+        <div class="region-item"><strong>Huggo's</strong><span>Oceanfront dining with live fish below the deck. Classic Kona institution for a reason.</span></div>
+        <div class="region-item"><strong>Kona Brewing Company</strong><span>Craft beer with a view. Great for a casual post-adventure lunch.</span></div>
+        <div class="region-item"><strong>Umekes Fish Market</strong><span>The poke here is exceptional. Order early — it runs out.</span></div>
+        <div class="region-item"><strong>Sushi Shiono</strong><span>Small, intimate, and genuinely excellent. Make a reservation.</span></div>
+        <div class="region-item"><strong>Manago Hotel Restaurant</strong><span>Local institution since 1917. Old-school Hawaiian plate lunches at unbeatable prices.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANTA RAYS SECTION -->
+<section class="region" id="mantas">
+  <div class="region-hero">
+    <div class="region-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1682687220742-aba19b51f36d?w=1400&q=80');"></div>
+    <div class="region-hero-content">
+      <span class="region-tag">Kona · After Dark</span>
+      <h2>Manta <em>Rays</em></h2>
+      <p class="region-desc">Completely wild. Impossibly close. The best wildlife experience in all of Hawai'i — and one of the most remarkable on the planet.</p>
+    </div>
+  </div>
+  <div class="region-body">
+    <div class="region-cols">
+      <div>
+        <span class="region-col-title">How It Works</span>
+        <div class="region-item"><strong>The Origin</strong><span>Resort lights near Keauhou Bay attracted plankton — and the mantas followed. Today, operators replicate this naturally using underwater lights.</span></div>
+        <div class="region-item"><strong>Completely Wild</strong><span>No captivity, no feeding, no touching. The mantas show up on their own to feed — you simply float and watch.</span></div>
+        <div class="region-item"><strong>Choose Responsibly</strong><span>Look for small-group tours with a genuine conservation focus. Overcrowded sites can stress the mantas and degrade the experience.</span></div>
+      </div>
+      <div>
+        <span class="region-col-title">The Two Sites</span>
+        <div class="region-item"><strong>Manta Village — Keauhou</strong><span>The original site, in front of the Outrigger Kona Resort. Shallower and more consistent for sightings.</span></div>
+        <div class="region-item"><strong>Manta Heaven — Makako Bay</strong><span>Near Kona Airport (Garden Eel Cove by day). Slightly deeper with larger resident manta population.</span></div>
+      </div>
+      <div>
+        <span class="region-col-title">Book Your Experience</span>
+        <div class="region-item">
+          <strong>Snorkel — Night Manta Tour</strong>
+          <span>Eco-focused operator, small groups. No scuba certification needed.</span>
+          <div class="btn-group">
+            <a class="btn btn-gold" href="https://www.viator.com/tours/Big-Island-of-Hawaii/Manta-Magic-Night-Manta-Ray-Snorkel/d669-40277P1?campaign=SNORKELMANTARAYS&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Book Night Snorkel</a>
+          </div>
+        </div>
+        <div class="region-item">
+          <strong>Scuba — 2-Tank Manta Dive</strong>
+          <span>For certified divers. Conservation-led dive with the mantas from below — an entirely different perspective.</span>
+          <div class="btn-group">
+            <a class="btn btn-outline" href="https://fareharbor.com/embeds/book/konahonudivers/items/1482/?asn=fhdn&asn-ref=matchmadecouple&bookable-only=yes&branding=no&flow=no&full-items=yes&marketplace=yes&ref=matchmadecouple" target="_blank" rel="noopener">Book 2-Tank Dive</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOLCANOES NP -->
+<section class="region" id="volcanoes">
+  <div class="region-hero">
+    <div class="region-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1565768234208-e7cc1a95e9e5?w=1400&q=80');"></div>
+    <div class="region-hero-content">
+      <span class="region-tag">Hawai'i Volcanoes National Park · 4,000 ft</span>
+      <h2>Kilauea &amp;<br><em>Mauna Loa</em></h2>
+      <p class="region-desc">The world's most active volcano, a living lava tube system, and steam venting from ancient cracks in the Earth. Plan a full day — this place earns it.</p>
+    </div>
+  </div>
+  <div class="region-body">
+    <div class="region-cols">
+      <div>
+        <span class="region-col-title">Kilauea Must-Dos</span>
+        <div class="region-item"><strong>Crater Rim Trail</strong><span>The most dramatic walk in the park — views directly into the Halema'uma'u caldera. Do this first thing in the morning or at dusk.</span></div>
+        <div class="region-item"><strong>Halema'uma'u Overlook</strong><span>The most powerful viewpoint on the island. At night, the lava lake glows orange and red against the sky.</span></div>
+        <div class="region-item"><strong>Thurston Lava Tube</strong><span>Walk through a 500-year-old tunnel carved by flowing lava. Lit, accessible, and genuinely extraordinary.</span></div>
+        <div class="region-item"><strong>Steam Vents & Steaming Bluffs</strong><span>Groundwater hits hot volcanic rock below the surface and rises as steam through fissures. Surreal and eerie.</span></div>
+        <div class="region-item"><strong>Iki Crater Trail</strong><span>Cross a hardened lava lake where lava once pooled at 800 ft deep. One of the best hikes in the park.</span></div>
+      </div>
+      <div>
+        <span class="region-col-title">Practical Info</span>
+        <div class="region-item"><strong>Bring a Jacket</strong><span>The park sits at 4,000 ft. Even on sunny days, the crater rim is windy and cold — especially after sunset.</span></div>
+        <div class="region-item"><strong>Best Time for Glow</strong><span>After dark. The Kilauea Overlook, Keanakako'i Overlook, and Crater Rim Trail all illuminate dramatically at night.</span></div>
+        <div class="region-item"><strong>Volcano Village</strong><span>Stay here — just minutes from the entrance. Charming, quiet, with local cafés, art galleries, and clean air thanks to trade winds that carry the vog away.</span></div>
+        <div class="region-item"><strong>Best Stay Near the Park</strong><span>Private native forest setting, hot tub, and locally sourced breakfast. Perfect base for an early crater visit.</span>
+          <div class="btn-group">
+            <a class="btn btn-outline" href="https://booking.stay22.com/matchmadecouple/izRsOKeaY6" target="_blank" rel="noopener">Find Your Stay</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="region-col-title">Mauna Loa</span>
+        <div class="region-item"><strong>The Largest Active Volcano on Earth</strong><span>Larger than all other volcanoes on the planet combined. The summit reaches 13,679 ft — and the view is staggering.</span></div>
+        <div class="region-item"><strong>Summit Access: Serious Undertaking</strong><span>Ainapo Trail only. Requires a high-clearance 4x4, state and NPS permits, and real high-altitude experience. ~10 miles one-way.</span></div>
+        <div class="region-item"><strong>Not for Everyone</strong><span>Not recommended for children, pregnant travelers, or those with cardiac or pulmonary conditions. Scuba divers must wait 24 hours before ascending.</span></div>
+        <div class="region-item"><strong>Official Trail Info</strong>
+          <div class="btn-group">
+            <a class="btn btn-ghost" href="https://www.nps.gov/havo/planyourvisit/hike_maunaloa.htm" target="_blank" rel="noopener">Mauna Loa Trail Info — NPS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <span class="kicker">Hidden Gem · Hualalai</span>
+      <h4>The Volcano Nobody Talks About</h4>
+      <p>Hualalai is the third-youngest volcano on the island — and still very much active. Unlike the other accessible peaks, Hualalai can only be explored by guided tour, which means it stays quiet, pristine, and genuinely off the beaten path. The trail winds through a native cloud forest, past colored lava flows and ancient craters, and into lava tubes carved thousands of years ago. If you want a volcanic experience without the crowds of the National Park, this is it.</p>
+      <div class="btn-group" style="margin-top: 20px;">
+        <a class="btn btn-outline" href="https://www.viator.com/tours/Big-Island-of-Hawaii/Hidden-Craters-Hike/d669-2804PINZHH?campaign=HULALAITRAIL&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Hualalai Guided Crater Hike</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HILO & UMAUMA -->
+<section class="region" id="hilo">
+  <div class="region-hero">
+    <div class="region-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1531592937781-344ad608fabf?w=1400&q=80');"></div>
+    <div class="region-hero-content">
+      <span class="region-tag">East Coast · Hilo · 19.7° N</span>
+      <h2>Hilo &amp;<br><em>Umauma</em></h2>
+      <p class="region-desc">The green, rain-soaked soul of the Big Island — waterfalls around every bend, rainforest caves, and the island's most vibrant local culture.</p>
+    </div>
+  </div>
+  <div class="region-body">
+    <div class="region-cols">
+      <div>
+        <span class="region-col-title">Best of Hilo</span>
+        <div class="region-item"><strong>Rainbow Falls</strong><span>Best visited at sunrise, when a full rainbow arcs across the 80-foot cascade. Easy walk from the road.</span></div>
+        <div class="region-item"><strong>Akaka Falls</strong><span>A 442-foot single-drop waterfall surrounded by bamboo and giant ferns. One of the most stunning falls in all of Hawai'i.</span></div>
+        <div class="region-item"><strong>Richardson's Beach Park</strong><span>Sheltered black sand beach with excellent snorkeling, sea turtles, and fewer crowds than the resort areas.</span></div>
+        <div class="region-item"><strong>Kaumana Caves</strong><span>Lava tubes you can explore yourself — flashlights required. Surprisingly extensive and otherworldly.</span></div>
+        <div class="region-item"><strong>Pacific Tsunami Museum</strong><span>Moving and informative. Hilo was devastated by tsunamis in 1946 and 1960 — this museum tells those stories well.</span></div>
+        <div class="region-item"><strong>Queen Lili'uokalani Gardens</strong><span>Formal Japanese garden along Hilo Bay — peaceful, beautiful, and free. Pair with Coconut Island at sunset.</span></div>
+      </div>
+      <div>
+        <span class="region-col-title">Umauma Adventures</span>
+        <div class="region-item">
+          <strong>9-Line Waterfall Zipline</strong>
+          <span>Nine ziplines, each with a different view of Umauma Falls — three tiers of cascades dropping through a tropical gorge. Arrive early, wear closed-toe shoes, and bring sandals for the water sections.</span>
+          <div class="btn-group">
+            <a class="btn btn-outline" href="https://www.viator.com/tours/Big-Island-of-Hawaii/9-Line-ZipLine-Experience/d669-26811P1?campaign=WATERFALLZIPLINEUMAUMA&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Book 9-Line Zipline</a>
+          </div>
+        </div>
+        <div class="region-item">
+          <strong>Zipline + Private Waterfall Swim</strong>
+          <span>The upgraded experience — ziplines followed by exclusive access to a private waterfall swimming hole.</span>
+          <div class="btn-group">
+            <a class="btn btn-outline" href="https://www.viator.com/tours/Big-Island-of-Hawaii/9-Line-ZipLine-Experience/d669-26811P2?campaign=UMAUMA&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Book Zipline + Swim</a>
+          </div>
+        </div>
+        <div class="region-item">
+          <strong>ATV + Private Waterfall Swim</strong>
+          <span>Off-road ATV adventure through the jungle, ending at a private waterfall. Great alternative if ziplines aren't your thing.</span>
+          <div class="btn-group">
+            <a class="btn btn-outline" href="https://www.viator.com/tours/Big-Island-of-Hawaii/Deluxe-ATV-Experience/d669-26811P4?campaign=UMAUMA&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Book ATV + Swim</a>
+          </div>
+        </div>
+        <div class="region-item">
+          <strong>Private Waterfall Swim Only</strong>
+          <span>Skip the activities — just access the private river and waterfall for a peaceful swim in the jungle.</span>
+          <div class="btn-group">
+            <a class="btn btn-ghost" href="https://www.viator.com/tours/Big-Island-of-Hawaii/Umauma-Private-Waterfall-and-River-Swim/d669-26811P15?campaign=UMAUMA&mcid=42383&medium=link&medium_version=selector&pid=P00223619" target="_blank" rel="noopener">Book Waterfall Swim</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="region-col-title">Food & Local Finds</span>
+        <div class="region-item"><strong>Hilo Bay Cafe</strong><span>Farm-to-table dining with ocean views. One of the best meals you'll have on the island.</span></div>
+        <div class="region-item"><strong>Cafe Pesto</strong><span>Creative Pacific Rim cuisine in a historic downtown building. A Hilo staple.</span></div>
+        <div class="region-item"><strong>Hawaiian Style Cafe</strong><span>Massive plates, local flavors, and some of the best banana pancakes you'll ever eat.</span></div>
+        <div class="region-item"><strong>Hilo Farmers Market</strong><span>Wednesday and Saturday mornings. Best spot for tropical fruits, local honey, and macadamia nuts.</span></div>
+        <div class="region-item"><strong>Krishna Cow Sanctuary</strong><span>Not food — but worth the detour. Pay $20 to enter the cuddle zone and spend unlimited time with rescue cows. Open 11am–2pm.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEACHES -->
+<section class="section" id="beaches" style="background: var(--dark);">
+  <div class="container">
+    <span class="section-tag">Coast & Shore</span>
+    <h2>Beaches <em>Worth Driving For</em></h2>
+    <p class="lead">The Big Island has beaches in green, black, and white — literally. Each one is a different geological story.</p>
+    <div class="beach-grid">
+      <div class="beach-card">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Green sand beach Big Island Papakolea Hawaii" loading="lazy" />
+        <span class="beach-badge">Green Sand</span>
+        <div class="beach-info">
+          <strong>Papakolea</strong>
+          <span>5-mile round trip hike. One of only four green sand beaches in the world — olivine crystals from eroding cinder cone.</span>
+        </div>
+      </div>
+      <div class="beach-card">
+        <img src="https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=800&q=80" alt="Black sand beach Hawaii Big Island Punaluu sea turtles" loading="lazy" />
+        <span class="beach-badge">Black Sand</span>
+        <div class="beach-info">
+          <strong>Punalu'u</strong>
+          <span>Iconic black sand beach where hawksbill and green sea turtles regularly rest. No touching — just observe.</span>
+        </div>
+      </div>
+      <div class="beach-card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Hapuna white sand beach Big Island Hawaii turquoise water" loading="lazy" />
+        <span class="beach-badge">White Sand</span>
+        <div class="beach-info">
+          <strong>Hapuna Beach</strong>
+          <span>Half-mile of white sand with calm, swimmable water. Consistently ranked one of the best beaches in the US.</span>
+        </div>
+      </div>
+      <div class="beach-card">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Kua Bay Maniniowali Beach clear water Big Island Hawaii" loading="lazy" />
+        <span class="beach-badge">Crystal Clear</span>
+        <div class="beach-info">
+          <strong>Kua Bay / Manini'owali</strong>
+          <span>Vivid turquoise water ideal for boogie boarding and swimming. Arrive early — parking fills by mid-morning.</span>
+        </div>
+      </div>
+      <div class="beach-card">
+        <img src="https://images.unsplash.com/photo-1468581264429-2548ef9eb732?w=800&q=80" alt="Mauna Kea Beach turquoise water Big Island Hawaii" loading="lazy" />
+        <span class="beach-badge">Resort Area</span>
+        <div class="beach-info">
+          <strong>Mauna Kea Beach</strong>
+          <span>Fine white sand, turquoise water, and excellent snorkeling. Public access available via the resort path.</span>
+        </div>
+      </div>
+      <div class="beach-card">
+        <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&q=80" alt="Spencer Beach Park calm family friendly Big Island Hawaii" loading="lazy" />
+        <span class="beach-badge">Family Friendly</span>
+        <div class="beach-info">
+          <strong>Spencer Beach Park</strong>
+          <span>Calm, shallow, and gentle on waves. Perfect for families with young kids. Full facilities and easy parking.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY NOTES -->
+<div class="safety-strip">
+  <div class="container">
+    <span class="section-tag">Before You Go</span>
+    <div class="safety-items">
+      <div class="safety-item">
+        <strong>Mauna Kea Altitude</strong>
+        <span>Real risk of altitude sickness at 13,796 ft. Stop at the Visitor Information Station (9,200 ft) for at least 30 minutes before continuing. Bring serious cold-weather layers.</span>
+      </div>
+      <div class="safety-item">
+        <strong>Mauna Loa: Experienced Only</strong>
+        <span>Requires state + NPS permits, high-clearance 4x4, prior high-altitude experience, and full backcountry prep. Not a casual hike — plan accordingly.</span>
+      </div>
+      <div class="safety-item">
+        <strong>Volcanoes NP: Dress for Cold</strong>
+        <span>The park sits at 4,000 ft. Wind, rain, and cool temperatures are common year-round. A light jacket minimum, rain layer preferred.</span>
+      </div>
+      <div class="safety-item">
+        <strong>Scuba Divers: 24-Hour Rule</strong>
+        <span>If you plan to dive and then ascend to altitude (Mauna Kea or Mauna Loa), wait a full 24 hours after your last dive before ascending above 8,000 ft.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOD -->
+<section class="section food-section" id="food">
+  <div class="container">
+    <span class="section-tag">Where to Eat</span>
+    <h2>Best <em>Food</em> by Zone</h2>
+    <p class="lead">The Big Island's food scene is as diverse as its landscape — from dockside poke to upcountry farm-to-table.</p>
+    <div class="food-zones">
+      <div>
+        <span class="food-zone-title">Kona</span>
+        <div class="food-item"><strong>Huggo's</strong><span>Oceanfront dining over the water. Great for sunset dinners.</span></div>
+        <div class="food-item"><strong>Kona Brewing Company</strong><span>Craft beer, pizza, and a large outdoor lanai with views.</span></div>
+        <div class="food-item"><strong>Umekes Fish Market Bar & Grill</strong><span>Best poke on the west side. Worth the wait.</span></div>
+        <div class="food-item"><strong>Sushi Shiono</strong><span>Intimate, exceptional. Reserve ahead.</span></div>
+        <div class="food-item"><strong>Manago Hotel Restaurant</strong><span>Local institution since 1917. Classic Hawaiian plate lunch.</span></div>
+      </div>
+      <div>
+        <span class="food-zone-title">Kohala</span>
+        <div class="food-item"><strong>Bamboo Restaurant & Gallery</strong><span>Eclectic Pacific Rim menu in a beautifully restored plantation building.</span></div>
+        <div class="food-item"><strong>Sushi Rock</strong><span>Creative Hawaiian-Japanese fusion. Great atmosphere in Hawi.</span></div>
+        <div class="food-item"><strong>Kings View Cafe</strong><span>Right near the King Kamehameha statue. Perfect lunch stop mid-day.</span></div>
+      </div>
+      <div>
+        <span class="food-zone-title">Hilo</span>
+        <div class="food-item"><strong>Hilo Bay Cafe</strong><span>Farm-to-table with ocean views. One of the best meals on the island.</span></div>
+        <div class="food-item"><strong>Cafe Pesto</strong><span>Pacific Rim cuisine in a beautiful historic building downtown.</span></div>
+        <div class="food-item"><strong>Pineapples Island Fresh Cuisine</strong><span>Colorful, creative, and local ingredients throughout.</span></div>
+        <div class="food-item"><strong>Hawaiian Style Cafe</strong><span>Local favorite for breakfast. Huge portions.</span></div>
+        <div class="food-item"><strong>Hilo Farmers Market</strong><span>Wed & Sat mornings. Fresh tropical fruit, local foods, and flowers.</span></div>
+      </div>
+      <div>
+        <span class="food-zone-title">Volcano Village</span>
+        <div class="food-item"><strong>Kilauea Lodge & Restaurant</strong><span>Cozy lodge dining perfect after a cold evening at the crater.</span></div>
+        <div class="food-item"><strong>Ohelo Cafe</strong><span>Casual, local, and excellent. Good coffee and breakfast options.</span></div>
+        <div class="food-item"><strong>Lava Rock Cafe</strong><span>Friendly neighborhood spot. Great for a quick meal before the park.</span></div>
+        <div class="food-item"><strong>Lanikai Brewing Co.</strong><span>Local craft beer just minutes from the volcano. A welcome reward.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  <div>
+    <h3>The Big Island is just<br>the beginning.</h3>
+    <p>Maui, Kaua'i, O'ahu — each island is its own world. Explore all of them.</p>
+  </div>
+  <a class="btn btn-black" href="https://matchmadecouple.com/the-islands-of-hawaii/" target="_blank" rel="noopener">Explore All Islands →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Match Made Couple LLC</div>
+      <span class="footer-tagline">Matching outfits, unmatched adventures</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://matchmadecouple.com/">Home</a>
+      <a href="https://matchmadecouple.com/the-islands-of-hawaii/">All Islands</a>
+      <a href="https://matchmadecouple.com/marketing-and-media-production/">Work With Us</a>
+      <a href="https://www.instagram.com/matchmadeadventures/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/matchmadeadventures/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.amazon.com/shop/matchmadecouple" target="_blank" rel="noopener">Amazon Shop</a>
+      <a href="https://matchmadecouple.com/privacy-policy/">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Match Made Couple LLC. All rights reserved.</span>
+    <span class="footer-copy" style="font-family:'Cormorant Garamond',serif; font-style:italic; opacity:0.4;">The Big Island · The Land of Lava · 19.8° N, 155.7° W</span>
+  </div>
+</footer>
+
+</body>
+</html>
