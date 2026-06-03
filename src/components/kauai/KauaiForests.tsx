@@ -5,20 +5,21 @@ export function KauaiForests() {
   const content = kauaiContent.forests;
   return (
     <SectionShell title="" className="bg-sand/40 !py-12 sm:!py-16 lg:!py-20">
-      <span className="mb-5 block text-sm font-medium uppercase tracking-[0.3em] text-hibiscus">
+      <span data-reveal className="mb-5 block text-sm font-medium uppercase tracking-[0.3em] text-hibiscus">
         {content.tag}
       </span>
-      <h2 className="mb-5 font-display text-[clamp(2.25rem,5vw,3.6rem)] font-light leading-[1.1] tracking-tight text-lava">
+      <h2 data-reveal className="mb-5 font-display text-[clamp(2.25rem,5vw,3.6rem)] font-light leading-[1.1] tracking-tight text-lava">
         Forest Reserves &amp;<br/><em className="font-light italic text-hibiscus">Wild Lands</em>
       </h2>
-      <p className="mb-12 max-w-[640px] font-display text-xl font-light italic leading-[1.7] text-lava/70">
+      <p data-reveal className="mb-12 max-w-[640px] font-display text-xl font-light italic leading-[1.7] text-lava/70">
         {content.lead}
       </p>
 
-      <div className="mt-16">
+      <div data-reveal-stagger className="mt-16">
         {content.items.map((item, idx) => (
           <div
             key={idx}
+            data-reveal-child
             className={`grid gap-4 py-8 sm:grid-cols-[200px_1fr] sm:gap-12 sm:items-start ${
               idx === 0 ? "border-y" : "border-b"
             } border-lava/10`}

@@ -5,7 +5,7 @@ export function KauaiBucketList() {
   const content = kauaiContent.bucketList;
   return (
     <SectionShell title="" className="bg-sand/40 !py-12 sm:!py-16 lg:!py-20">
-      <div className="mb-16 flex items-center gap-5">
+      <div data-reveal className="mb-16 flex items-center gap-5">
         <div className="h-px flex-1 bg-lava/10" />
         <span className="text-xs uppercase tracking-[0.3em] text-hibiscus/80">
           Must Do
@@ -13,20 +13,21 @@ export function KauaiBucketList() {
         <div className="h-px flex-1 bg-lava/10" />
       </div>
 
-      <span className="mb-5 block text-sm font-medium uppercase tracking-[0.3em] text-hibiscus">
+      <span data-reveal className="mb-5 block text-sm font-medium uppercase tracking-[0.3em] text-hibiscus">
         {content.tag}
       </span>
-      <h2 className="mb-5 font-display text-[clamp(2.25rem,5vw,3.6rem)] font-light leading-[1.1] tracking-tight text-lava">
+      <h2 data-reveal className="mb-5 font-display text-[clamp(2.25rem,5vw,3.6rem)] font-light leading-[1.1] tracking-tight text-lava">
         Best Things <em className="font-light italic text-hibiscus">To Do</em>
       </h2>
-      <p className="mb-12 max-w-[640px] font-display text-xl font-light italic leading-[1.7] text-lava/70">
+      <p data-reveal className="mb-12 max-w-[640px] font-display text-xl font-light italic leading-[1.7] text-lava/70">
         {content.lead}
       </p>
 
-      <div className="mt-16 flex flex-col gap-[2px]">
+      <div data-reveal-stagger className="mt-16 flex flex-col gap-[2px]">
         {content.items.map((item, idx) => (
           <div
             key={idx}
+            data-reveal-child
             className="grid items-start gap-12 border-t border-lava/10 py-11 transition-colors hover:border-hibiscus/30 sm:grid-cols-[80px_1fr] lg:grid-cols-[80px_1fr_320px]"
           >
             <div className="font-display text-5xl font-light leading-none text-lava/15">
@@ -46,10 +47,10 @@ export function KauaiBucketList() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-block px-7 py-[13px] text-xs font-bold uppercase tracking-[0.2em] transition-all ${
+                    className={`kauai-affiliate-cta ${
                       link.primary
-                        ? "bg-hibiscus text-shell border border-hibiscus hover:bg-[#8F3F32] hover:border-[#8F3F32]"
-                        : "bg-transparent text-hibiscus border border-hibiscus/50 hover:bg-hibiscus/10 hover:border-hibiscus"
+                        ? "kauai-affiliate-cta--primary"
+                        : "kauai-affiliate-cta--secondary"
                     }`}
                   >
                     {link.label}
@@ -57,7 +58,7 @@ export function KauaiBucketList() {
                 ))}
               </div>
             </div>
-            <div className="relative hidden aspect-[4/3] overflow-hidden rounded-2xl bg-sand lg:block">
+            <div data-parallax="10" className="relative hidden aspect-[4/3] overflow-hidden rounded-2xl bg-sand will-change-transform lg:block">
               <img
                 src={item.image}
                 alt={item.title}

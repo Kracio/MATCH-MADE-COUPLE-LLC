@@ -3,10 +3,12 @@ import { kauaiContent } from "@/content/kauai-content";
 export function KauaiHero() {
   const content = kauaiContent.hero;
   return (
-    <section className="relative flex min-h-[700px] h-screen flex-col justify-center items-center text-center overflow-hidden px-6 sm:px-12 lg:px-20">
+    <section className="relative flex min-h-[max(700px,100dvh)] flex-col justify-center items-center text-center overflow-hidden px-6 sm:px-12 lg:px-20">
       {/* Clean Background Image */}
       <div 
-        className="absolute inset-0 bg-cover bg-[center_30%]"
+        data-hero-bg
+        data-parallax="18"
+        className="absolute -inset-y-10 inset-x-0 bg-cover bg-[center_30%]"
         style={{ backgroundImage: `url('${content.bgImage}')` }}
       />
       
@@ -16,7 +18,7 @@ export function KauaiHero() {
       {/* Optional: Very subtle gradient just to ensure the top nav is readable */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent" />
       
-      <div className="absolute right-6 top-24 sm:right-12 sm:top-32 lg:right-20 hidden md:block z-10" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
+      <div data-hero-decor className="absolute right-6 top-24 sm:right-12 sm:top-32 lg:right-20 hidden md:block z-10" style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}>
         <p className="text-sm tracking-[0.2em] text-white uppercase drop-shadow-md">
           {content.coordinates}
         </p>
@@ -28,18 +30,18 @@ export function KauaiHero() {
       <div className="relative max-w-3xl z-10 flex flex-col items-center">
         
         {/* The rest of the text moved to the top with a strong drop-shadow for legibility */}
-        <h1 className="mb-4 font-display text-[clamp(4.5rem,10vw,8rem)] font-light leading-[0.9] tracking-tight text-shell drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
+        <h1 data-hero-item className="mb-4 font-display text-[clamp(4.5rem,10vw,8rem)] font-light leading-[0.9] tracking-tight text-shell drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)]">
           Kaua<em className="font-light italic text-sand">{"'i"}</em>
         </h1>
-        <p className="mb-8 text-sm sm:text-base font-medium uppercase tracking-[0.15em] text-sand drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        <p data-hero-item className="mb-8 text-sm sm:text-base font-medium uppercase tracking-[0.15em] text-sand drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
           {content.subtitle}
         </p>
-        <p className="mb-12 max-w-2xl font-display text-xl font-light italic leading-relaxed text-shell sm:text-2xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.7)] [text-shadow:0_1px_3px_rgba(0,0,0,0.7)]">
+        <p data-hero-item className="mb-12 max-w-2xl font-display text-xl font-light italic leading-relaxed text-shell sm:text-2xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.7)] [text-shadow:0_1px_3px_rgba(0,0,0,0.7)]">
           {content.description}
         </p>
 
         {/* Ripped Edge Box just for the Tag with opacity moved to the bottom */}
-        <div className="relative inline-block opacity-[0.90] hover:opacity-100 transition-opacity duration-300 shadow-2xl">
+        <div data-hero-visual data-float="6" className="relative inline-block opacity-[0.90] hover:opacity-100 transition-opacity duration-300 shadow-2xl will-change-transform">
           <div className="absolute inset-0 bg-shell backdrop-blur-sm"></div>
           {/* Subtle tropical/hawaii background watermark pattern */}
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #4A2C24 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
@@ -62,7 +64,7 @@ export function KauaiHero() {
         </div>
       </div>
 
-      <div className="absolute bottom-12 right-6 hidden items-center gap-3 text-xs uppercase tracking-[0.25em] text-white sm:right-12 sm:flex lg:bottom-20 lg:right-20 z-10 drop-shadow-md">
+      <div data-hero-decor className="absolute bottom-12 right-6 hidden items-center gap-3 text-xs uppercase tracking-[0.25em] text-white sm:right-12 sm:flex lg:bottom-20 lg:right-20 z-10 drop-shadow-md">
         <div className="h-px w-10 bg-white/60" />
         Scroll
       </div>

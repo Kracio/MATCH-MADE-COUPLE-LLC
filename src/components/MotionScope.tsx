@@ -18,12 +18,14 @@ export function MotionScope({ children }: MotionScopeProps) {
       const revealItems = gsap.utils.toArray<HTMLElement>("[data-reveal]", scope.current);
       const revealChildren = gsap.utils.toArray<HTMLElement>("[data-reveal-child]", scope.current);
       const heroItems = gsap.utils.toArray<HTMLElement>("[data-hero-item]", scope.current);
+      const heroBackgrounds = gsap.utils.toArray<HTMLElement>("[data-hero-bg]", scope.current);
       const heroCollage = gsap.utils.toArray<HTMLElement>("[data-hero-visual]", scope.current);
       const heroDecor = gsap.utils.toArray<HTMLElement>("[data-hero-decor]", scope.current);
       const parallaxItems = gsap.utils.toArray<HTMLElement>("[data-parallax]", scope.current);
+      const floatItems = gsap.utils.toArray<HTMLElement>("[data-float]", scope.current);
 
       if (reduceMotion) {
-        gsap.set([...revealItems, ...revealChildren, ...heroItems, ...heroCollage, ...heroDecor], {
+        gsap.set([...revealItems, ...revealChildren, ...heroItems, ...heroBackgrounds, ...heroCollage, ...heroDecor, ...parallaxItems, ...floatItems], {
           autoAlpha: 1,
           x: 0,
           y: 0,
@@ -37,14 +39,20 @@ export function MotionScope({ children }: MotionScopeProps) {
       const heroTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
       heroTimeline
         .fromTo(
+          heroBackgrounds,
+          { autoAlpha: 0, scale: 1.06 },
+          { autoAlpha: 1, scale: 1, duration: 1.45, ease: "sine.out" },
+        )
+        .fromTo(
           "[data-hero-header]",
           { autoAlpha: 0, y: -18 },
           { autoAlpha: 1, y: 0, duration: 0.9 },
+          heroBackgrounds.length ? "-=1.05" : 0,
         )
         .fromTo(
           heroItems,
-          { autoAlpha: 0, y: 34 },
-          { autoAlpha: 1, y: 0, duration: 0.95, stagger: 0.09 },
+          { autoAlpha: 0, y: 34, scale: 0.99 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.95, stagger: 0.09 },
           "-=0.48",
         )
         .fromTo(
@@ -123,9 +131,25 @@ export function MotionScope({ children }: MotionScopeProps) {
             },
           });
         });
+
+        floatItems.forEach((item, index) => {
+          const distance = Number(item.dataset.float) || 10;
+          gsap.to(item, {
+            y: index % 2 ? distance : -distance,
+            rotation: index % 2 ? 0.7 : -0.7,
+            duration: 4.8 + index * 0.35,
+            ease: "sine.inOut",
+            repeat: -1,
+            yoyo: true,
+          });
+        });
       });
 
       ScrollTrigger.refresh();
+
+      return () => {
+        media.revert();
+      };
     },
     { scope },
   );

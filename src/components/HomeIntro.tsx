@@ -66,7 +66,7 @@ export function HomeIntro({ content }: HomeIntroProps) {
           </div>
         </div>
 
-        <div data-hero-visual className="relative mx-auto mt-12 min-h-[26rem] w-full max-w-[40rem] overflow-visible sm:min-h-[30rem] lg:mr-0 lg:mt-0 lg:min-h-[34rem] lg:max-w-[42rem] xl:mt-0 xl:min-h-[36rem]">
+        <div data-hero-visual data-float="8" className="relative mx-auto mt-12 min-h-[26rem] w-full max-w-[40rem] overflow-visible will-change-transform sm:min-h-[30rem] lg:mr-0 lg:mt-0 lg:min-h-[34rem] lg:max-w-[42rem] xl:mt-0 xl:min-h-[36rem]">
           <div className="absolute inset-x-6 -bottom-10 top-32 -z-10 rounded-[3rem] bg-[linear-gradient(135deg,rgb(79_124_120_/_0.18),rgb(244_232_213_/_0.2)_48%,rgb(47_79_62_/_0.14))] blur-2xl" aria-hidden="true" />
           <div className="absolute inset-0 z-10 flex items-center justify-center -translate-y-5">
             <img src={content.image.src} alt={content.image.alt} className="relative w-full max-w-[100%] scale-105 object-contain object-center drop-shadow-[0_24px_45px_rgb(47_79_62_/_0.15)] lg:translate-x-6 lg:scale-110 xl:translate-x-8 xl:scale-[1.15]" />
